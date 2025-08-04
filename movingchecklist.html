@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Checklist</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#57b5e7',
+                        secondary: '#8dd3c7'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+        .task-card {
+            transition: all 0.3s ease;
+        }
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .drag-handle {
+            cursor: grab;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+        .dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+        .drop-zone {
+            border: 2px dashed #57b5e7;
+            background-color: rgba(87, 181, 231, 0.05);
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring-circle {
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 251.2;
+            transition: stroke-dashoffset 0.5s ease-in-out;
+        }
+        .completed-task {
+            opacity: 0.6;
+        }
+        .completed-task .task-title {
+            text-decoration: line-through;
+        }
+        .priority-high {
+            border-left: 4px solid #ef4444;
+        }
+        .priority-medium {
+            border-left: 4px solid #f59e0b;
+        }
+        .priority-low {
+            border-left: 4px solid #10b981;
+        }
+        .category-section {
+            min-height: 200px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-6 py-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 flex items-center justify-center bg-primary rounded-lg">
+                            <i class="ri-home-4-line text-white text-xl"></i>
+                        </div>
+                        <h1 class="text-3xl font-bold text-gray-900">Moving Checklist</h1>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <!-- Overall Progress -->
+                        <div class="flex items-center space-x-3">
+                            <div class="relative w-16 h-16">
+                                <svg class="progress-ring w-16 h-16" viewBox="0 0 84 84">
+                                    <circle cx="42" cy="42" r="40" stroke="#e5e7eb" stroke-width="4" fill="none"/>
+                                    <circle id="progress-circle" cx="42" cy="42" r="40" stroke="#57b5e7" stroke-width="4" fill="none" class="progress-ring-circle"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span id="progress-text" class="text-sm font-semibold text-gray-700">0%</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Overall Progress</p>
+                                <p id="task-count" class="text-lg font-semibold text-gray-900">0 of 16 tasks</p>
+                            </div>
+                        </div>
+                        <!-- Quick Actions -->
+                        <div class="flex items-center space-x-3">
+                            <button id="add-task-btn" class="!rounded-button whitespace-nowrap bg-primary text-white px-4 py-2 text-sm font-medium hover:bg-blue-600 transition-colors">
+                                <i class="ri-add-line mr-2"></i>Add Task
+                            </button>
+                            <button id="filter-btn" class="!rounded-button whitespace-nowrap bg-white border border-gray-300 text-gray-700 px-4 py-2 text-sm font-medium hover:bg-gray-50 transition-colors">
+                                <i class="ri-filter-3-line mr-2"></i>Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search and Sort Bar -->
+                <div class="mt-6 flex items-center space-x-4">
+                    <div class="flex-1 relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="ri-search-line text-gray-400"></i>
+                        </div>
+                        <input id="search-input" type="text" placeholder="Search tasks..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <select id="sort-select" class="pr-8 pl-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <option value="default">Sort by Default</option>
+                        <option value="date">Sort by Date</option>
+                        <option value="priority">Sort by Priority</option>
+                        <option value="alphabetical">Sort Alphabetically</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-6 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+                <!-- Packing Tasks -->
+                <div class="category-section bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 flex items-center justify-center bg-orange-100 rounded-lg">
+                                <i class="ri-archive-line text-orange-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Packing</h3>
+                                <p class="text-sm text-gray-500">4 tasks</p>
+                            </div>
+                        </div>
+                        <button class="collapse-btn w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                            <i class="ri-arrow-up-s-line"></i>
+                        </button>
+                    </div>
+                    <div class="mb-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="category-progress bg-orange-500 h-2 rounded-full" style="width: 25%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">1 of 4 completed</p>
+                    </div>
+                    <div class="task-list space-y-3" data-category="packing">
+                        <div class="task-card priority-high bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="1">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Order moving boxes and supplies</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Get boxes, tape, bubble wrap, and labels</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">High Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 15</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-medium bg-white border border-gray-200 rounded-lg p-4 cursor-move completed-task" data-task-id="2">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary" checked>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Start packing non-essential items</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Books, decorations, seasonal clothes</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded">Medium Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 20</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-medium bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="3">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Pack room by room</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Label boxes clearly with contents and destination room</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded">Medium Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 25</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-low bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="4">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Pack essentials box</h4>
+                                    <p class="text-xs text-gray-500 mt-1">First day necessities for new home</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-green-600 bg-green-50 px-2 py-1 rounded">Low Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 30</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-category-task w-full mt-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-orange-300 hover:text-orange-600 transition-colors">
+                        <i class="ri-add-line mr-1"></i>Add Packing Task
+                    </button>
+                </div>
+
+                <!-- Utilities & Services -->
+                <div class="category-section bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-lg">
+                                <i class="ri-settings-3-line text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Utilities & Services</h3>
+                                <p class="text-sm text-gray-500">4 tasks</p>
+                            </div>
+                        </div>
+                        <button class="collapse-btn w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                            <i class="ri-arrow-up-s-line"></i>
+                        </button>
+                    </div>
+                    <div class="mb-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="category-progress bg-blue-500 h-2 rounded-full" style="width: 50%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">2 of 4 completed</p>
+                    </div>
+                    <div class="task-list space-y-3" data-category="utilities">
+                        <div class="task-card priority-high bg-white border border-gray-200 rounded-lg p-4 cursor-move completed-task" data-task-id="5">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary" checked>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Schedule utility disconnection</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Electricity, gas, water, internet</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">High Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 18</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-high bg-white border border-gray-200 rounded-lg p-4 cursor-move completed-task" data-task-id="6">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary" checked>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Set up utilities at new home</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Arrange connection dates for all services</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">High Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 22</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-medium bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="7">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Transfer cable and internet</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Contact providers for service transfer</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded">Medium Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 25</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-low bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="8">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Update home security system</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Transfer or cancel existing service</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-green-600 bg-green-50 px-2 py-1 rounded">Low Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Feb 1</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-category-task w-full mt-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-blue-300 hover:text-blue-600 transition-colors">
+                        <i class="ri-add-line mr-1"></i>Add Utilities Task
+                    </button>
+                </div>
+
+                <!-- Address Changes -->
+                <div class="category-section bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 flex items-center justify-center bg-green-100 rounded-lg">
+                                <i class="ri-mail-line text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Address Changes</h3>
+                                <p class="text-sm text-gray-500">4 tasks</p>
+                            </div>
+                        </div>
+                        <button class="collapse-btn w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                            <i class="ri-arrow-up-s-line"></i>
+                        </button>
+                    </div>
+                    <div class="mb-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="category-progress bg-green-500 h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">0 of 4 completed</p>
+                    </div>
+                    <div class="task-list space-y-3" data-category="address">
+                        <div class="task-card priority-high bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="9">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Update address with USPS</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Submit change of address form online</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">High Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 20</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-high bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="10">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Update bank and credit cards</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Contact all financial institutions</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">High Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 22</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-medium bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="11">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Update insurance policies</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Home, auto, and health insurance</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded">Medium Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 28</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-medium bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="12">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Update voter registration</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Register at new address online</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded">Medium Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Feb 5</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-category-task w-full mt-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-green-300 hover:text-green-600 transition-colors">
+                        <i class="ri-add-line mr-1"></i>Add Address Task
+                    </button>
+                </div>
+
+                <!-- Timeline & Deadlines -->
+                <div class="category-section bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 flex items-center justify-center bg-purple-100 rounded-lg">
+                                <i class="ri-calendar-line text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900">Timeline & Deadlines</h3>
+                                <p class="text-sm text-gray-500">4 tasks</p>
+                            </div>
+                        </div>
+                        <button class="collapse-btn w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                            <i class="ri-arrow-up-s-line"></i>
+                        </button>
+                    </div>
+                    <div class="mb-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="category-progress bg-purple-500 h-2 rounded-full" style="width: 25%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">1 of 4 completed</p>
+                    </div>
+                    <div class="task-list space-y-3" data-category="timeline">
+                        <div class="task-card priority-high bg-white border border-gray-200 rounded-lg p-4 cursor-move completed-task" data-task-id="13">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary" checked>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Book moving company</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Get quotes and schedule moving date</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">High Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 10</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-high bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="14">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Confirm moving day details</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Time, address, contact information</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">High Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 29</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-medium bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="15">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Take time off work</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Request moving day and settling in time</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-yellow-600 bg-yellow-50 px-2 py-1 rounded">Medium Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Jan 25</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="task-card priority-low bg-white border border-gray-200 rounded-lg p-4 cursor-move" data-task-id="16">
+                            <div class="flex items-start space-x-3">
+                                <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                                    <i class="ri-drag-move-2-line text-xs"></i>
+                                </div>
+                                <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="task-title text-sm font-medium text-gray-900">Plan first week meals</h4>
+                                    <p class="text-xs text-gray-500 mt-1">Stock up on essentials and easy meals</p>
+                                    <div class="flex items-center justify-between mt-2">
+                                        <span class="text-xs text-green-600 bg-green-50 px-2 py-1 rounded">Low Priority</span>
+                                        <span class="text-xs text-gray-500">Due: Feb 1</span>
+                                    </div>
+                                </div>
+                                <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                                    <i class="ri-delete-bin-line text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-category-task w-full mt-4 py-2 border-2 border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-purple-300 hover:text-purple-600 transition-colors">
+                        <i class="ri-add-line mr-1"></i>Add Timeline Task
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div id="add-task-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md mx-4">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Add New Task</h3>
+                    <button id="close-modal" class="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                <form id="add-task-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Task Title</label>
+                        <input type="text" id="task-title" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter task title">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <textarea id="task-description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter task description"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                            <select id="task-category" class="pr-8 w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="packing">Packing</option>
+                                <option value="utilities">Utilities & Services</option>
+                                <option value="address">Address Changes</option>
+                                <option value="timeline">Timeline & Deadlines</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                            <select id="task-priority" class="pr-8 w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="high">High Priority</option>
+                                <option value="medium">Medium Priority</option>
+                                <option value="low">Low Priority</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
+                        <input type="date" id="task-date" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" id="cancel-task" class="!rounded-button whitespace-nowrap px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 transition-colors">Cancel</button>
+                        <button type="submit" class="!rounded-button whitespace-nowrap px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-blue-600 transition-colors">Add Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+     <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">UniLodge</h3>
+                    <p class="text-gray-300 mb-4">Nigeria's trusted platform for student accommodation since 2020.</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-twitter-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Student Resources</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="housingguide.html" class="hover:text-white">Housing Guide</a></li>
+                        <li><a href="movingchecklist.html" class="hover:text-white">Moving Checklist</a></li>
+                        <li><a href="roommates proflies/roommatematching.html" class="hover:text-white">Roommate Matching</a></li>
+                        <li><a href="safetytips.html" class="hover:text-white">Safety Tips</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="helpcenter.html" class="hover:text-white">Help Center</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="reportissue.html" class="hover:text-white">Report Issue</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4">Get notified about new listings and housing tips.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2024 CampusStay. All rights reserved.</p>
+                    <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-message-3-line text-xl"></i>
+            </div>
+        </button>
+    </div>
+
+    <script id="drag-drop-functionality">
+        document.addEventListener('DOMContentLoaded', function() {
+            let draggedElement = null;
+            let draggedFromCategory = null;
+            function initializeDragAndDrop() {
+                const taskCards = document.querySelectorAll('.task-card');
+                const taskLists = document.querySelectorAll('.task-list');
+                taskCards.forEach(card => {
+                    card.addEventListener('dragstart', function(e) {
+                        draggedElement = this;
+                        draggedFromCategory = this.closest('.task-list').dataset.category;
+                        this.classList.add('dragging');
+                        e.dataTransfer.effectAllowed = 'move';
+                    });
+
+                    card.addEventListener('dragend', function() {
+                        this.classList.remove('dragging');
+                        draggedElement = null;
+                        draggedFromCategory = null;
+                        document.querySelectorAll('.drop-zone').forEach(zone => {
+                            zone.classList.remove('drop-zone');
+                        });
+                    });
+
+                    card.setAttribute('draggable', 'true');
+                });
+                taskLists.forEach(list => {
+                    list.addEventListener('dragover', function(e) {
+                        e.preventDefault();
+                        this.classList.add('drop-zone');
+                    });
+
+                    list.addEventListener('dragleave', function(e) {
+                        if (!this.contains(e.relatedTarget)) {
+                            this.classList.remove('drop-zone');
+                        }
+                    });
+
+                    list.addEventListener('drop', function(e) {
+                        e.preventDefault();
+                        this.classList.remove('drop-zone');
+                        
+                        if (draggedElement && draggedElement !== e.target) {
+                            this.appendChild(draggedElement);
+                            updateTaskCounts();
+                            updateProgress();
+                        }
+                    });
+                });
+            }
+
+            initializeDragAndDrop();
+        });
+    </script>
+
+    <script id="task-management">
+        document.addEventListener('DOMContentLoaded', function() {
+            let taskIdCounter = 17;
+            function updateTaskCounts() {
+                const categories = ['packing', 'utilities', 'address', 'timeline'];
+                categories.forEach(category => {
+                    const categorySection = document.querySelector(`[data-category="${category}"]`).closest('.category-section');
+                    const tasks = categorySection.querySelectorAll('.task-card');
+                    const completedTasks = categorySection.querySelectorAll('.task-card.completed-task');
+                    const taskCountElement = categorySection.querySelector('p.text-sm.text-gray-500');
+                    const progressText = categorySection.querySelector('.text-xs.text-gray-500');
+                    const progressBar = categorySection.querySelector('.category-progress');
+                    
+                    taskCountElement.textContent = `${tasks.length} tasks`;
+                    progressText.textContent = `${completedTasks.length} of ${tasks.length} completed`;
+                    
+                    const progressPercent = tasks.length > 0 ? (completedTasks.length / tasks.length) * 100 : 0;
+                    progressBar.style.width = `${progressPercent}%`;
+                });
+            }
+
+            function updateProgress() {
+                const allTasks = document.querySelectorAll('.task-card');
+                const completedTasks = document.querySelectorAll('.task-card.completed-task');
+                const progressPercent = allTasks.length > 0 ? (completedTasks.length / allTasks.length) * 100 : 0;
+                
+                const progressCircle = document.getElementById('progress-circle');
+                const progressText = document.getElementById('progress-text');
+                const taskCount = document.getElementById('task-count');
+                
+                const circumference = 2 * Math.PI * 40;
+                const offset = circumference - (progressPercent / 100) * circumference;
+                
+                progressCircle.style.strokeDashoffset = offset;
+                progressText.textContent = `${Math.round(progressPercent)}%`;
+                taskCount.textContent = `${completedTasks.length} of ${allTasks.length} tasks`;
+            }
+
+            function toggleTaskCompletion(taskCard, checkbox) {
+                if (checkbox.checked) {
+                    taskCard.classList.add('completed-task');
+                } else {
+                    taskCard.classList.remove('completed-task');
+                }
+                updateTaskCounts();
+                updateProgress();
+            }
+
+            function deleteTask(taskCard) {
+                taskCard.remove();
+                updateTaskCounts();
+                updateProgress();
+            }
+
+            function addNewTask(title, description, category, priority, date) {
+                const taskList = document.querySelector(`[data-category="${category}"]`);
+                const taskCard = document.createElement('div');
+                taskCard.className = `task-card priority-${priority} bg-white border border-gray-200 rounded-lg p-4 cursor-move`;
+                taskCard.setAttribute('data-task-id', taskIdCounter++);
+                taskCard.setAttribute('draggable', 'true');
+                const priorityColors = {
+                    high: 'red',
+                    medium: 'yellow',
+                    low: 'green'
+                };
+
+                const priorityLabels = {
+                    high: 'High Priority',
+                    medium: 'Medium Priority',
+                    low: 'Low Priority'
+                };
+
+                const formattedDate = new Date(date).toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric' 
+                });
+
+                taskCard.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="drag-handle w-4 h-4 flex items-center justify-center text-gray-400 mt-1">
+                            <i class="ri-drag-move-2-line text-xs"></i>
+                        </div>
+                        <input type="checkbox" class="task-checkbox mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="task-title text-sm font-medium text-gray-900">${title}</h4>
+                            <p class="text-xs text-gray-500 mt-1">${description}</p>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-xs text-${priorityColors[priority]}-600 bg-${priorityColors[priority]}-50 px-2 py-1 rounded">${priorityLabels[priority]}</span>
+                                <span class="text-xs text-gray-500">Due: ${formattedDate}</span>
+                            </div>
+                        </div>
+                        <button class="delete-task w-4 h-4 flex items-center justify-center text-gray-400 hover:text-red-500">
+                            <i class="ri-delete-bin-line text-xs"></i>
+                        </button>
+                    </div>
+                `;
+
+                taskList.appendChild(taskCard);
+                updateTaskCounts();
+                updateProgress();
+                initializeTaskEvents(taskCard);
+            }
+
+            function initializeTaskEvents(taskCard) {
+                const checkbox = taskCard.querySelector('.task-checkbox');
+                const deleteBtn = taskCard.querySelector('.delete-task');
+
+                checkbox.addEventListener('change', () => {
+                    toggleTaskCompletion(taskCard, checkbox);
+                });
+
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteTask(taskCard);
+                });
+
+                taskCard.addEventListener('dragstart', function(e) {
+                    draggedElement = this;
+                    draggedFromCategory = this.closest('.task-list').dataset.category;
+                    this.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+                taskCard.addEventListener('dragend', function() {
+                    this.classList.remove('dragging');
+                });
+            }
+
+            document.querySelectorAll('.task-card').forEach(taskCard => {
+                initializeTaskEvents(taskCard);
+            });
+
+            const addTaskBtn = document.getElementById('add-task-btn');
+            const addTaskModal = document.getElementById('add-task-modal');
+            const closeModal = document.getElementById('close-modal');
+            const cancelTask = document.getElementById('cancel-task');
+            const addTaskForm = document.getElementById('add-task-form');
+
+            addTaskBtn.addEventListener('click', () => {
+                addTaskModal.classList.remove('hidden');
+                addTaskModal.classList.add('flex');
+            });
+
+            closeModal.addEventListener('click', () => {
+                addTaskModal.classList.add('hidden');
+                addTaskModal.classList.remove('flex');
+            });
+
+            cancelTask.addEventListener('click', () => {
+                addTaskModal.classList.add('hidden');
+                addTaskModal.classList.remove('flex');
+            });
+
+            addTaskForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const title = document.getElementById('task-title').value;
+                const description = document.getElementById('task-description').value;
+                const category = document.getElementById('task-category').value;
+                const priority = document.getElementById('task-priority').value;
+                const date = document.getElementById('task-date').value;
+
+                if (title && description && date) {
+                    addNewTask(title, description, category, priority, date);
+                    addTaskForm.reset();
+                    addTaskModal.classList.add('hidden');
+                    addTaskModal.classList.remove('flex');
+                }
+            });
+
+            document.querySelectorAll('.add-category-task').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const category = btn.closest('.category-section').querySelector('[data-category]').dataset.category;
+                    document.getElementById('task-category').value = category;
+                    addTaskModal.classList.remove('hidden');
+                    addTaskModal.classList.add('flex');
+                });
+            });
+
+            updateTaskCounts();
+            updateProgress();
+        });
+    </script>
+
+    <script id="search-filter-functionality">
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+            const sortSelect = document.getElementById('sort-select');
+
+            function filterTasks(searchTerm) {
+                const taskCards = document.querySelectorAll('.task-card');
+                taskCards.forEach(card => {
+                    const title = card.querySelector('.task-title').textContent.toLowerCase();
+                    const description = card.querySelector('.text-xs.text-gray-500').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase())) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            function sortTasks(sortBy) {
+                const taskLists = document.querySelectorAll('.task-list');
+                
+                taskLists.forEach(list => {
+                    const tasks = Array.from(list.querySelectorAll('.task-card'));
+                    
+                    tasks.sort((a, b) => {
+                        switch(sortBy) {
+                            case 'date':
+                                const dateA = new Date(a.querySelector('.text-xs.text-gray-500:last-child').textContent.replace('Due: ', ''));
+                                const dateB = new Date(b.querySelector('.text-xs.text-gray-500:last-child').textContent.replace('Due: ', ''));
+                                return dateA - dateB;
+                            case 'priority':
+                                const priorityOrder = { 'priority-high': 0, 'priority-medium': 1, 'priority-low': 2 };
+                                const priorityA = a.className.includes('priority-high') ? 0 : a.className.includes('priority-medium') ? 1 : 2;
+                                const priorityB = b.className.includes('priority-high') ? 0 : b.className.includes('priority-medium') ? 1 : 2;
+                                return priorityA - priorityB;
+                            case 'alphabetical':
+                                const titleA = a.querySelector('.task-title').textContent.toLowerCase();
+                                const titleB = b.querySelector('.task-title').textContent.toLowerCase();
+                                return titleA.localeCompare(titleB);
+                            default:
+                                return 0;
+                        }
+                    });
+                    
+                    tasks.forEach(task => list.appendChild(task));
+                });
+            }
+
+            searchInput.addEventListener('input', (e) => {
+                filterTasks(e.target.value);
+            });
+
+            sortSelect.addEventListener('change', (e) => {
+                sortTasks(e.target.value);
+            });
+        });
+    </script>
+
+    <script id="collapse-functionality">
+        document.addEventListener('DOMContentLoaded', function() {
+            const collapseButtons = document.querySelectorAll('.collapse-btn');
+            
+            collapseButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const categorySection = btn.closest('.category-section');
+                    const taskList = categorySection.querySelector('.task-list');
+                    const addBtn = categorySection.querySelector('.add-category-task');
+                    const icon = btn.querySelector('i');
+                    
+                    if (taskList.style.display === 'none') {
+                        taskList.style.display = 'block';
+                        addBtn.style.display = 'block';
+                        icon.className = 'ri-arrow-up-s-line';
+                    } else {
+                        taskList.style.display = 'none';
+                        addBtn.style.display = 'none';
+                        icon.className = 'ri-arrow-down-s-line';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorites - UniLodge Nigeria</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <header class="w-full bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-['Pacifico'] text-primary">Dorm4Me</h1>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"
+                        data-readdy="true" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="search.html"
+                        data-readdy="true" class="text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="favorites.html" class="text-primary font-medium border-b-2 border-primary">Favorites</a>
+                    <div class="flex items-center space-x-3">
+                        <button class="text-gray-700 hover:text-primary font-medium">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </nav>
+                <button id="mobileMenuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+                    <div class="w-6 h-6 flex items-center justify-center">
+                        <i class="ri-menu-line text-2xl"></i>
+                    </div>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                        data-readdy="true" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                        data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="#" class="block px-3 py-2 text-primary font-medium">Favorites</a>
+                    <div class="flex flex-col space-y-2 px-3 py-2">
+                        <button class="text-gray-700 hover:text-primary font-medium text-left">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="filterSidebar" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50" id="sidebarOverlay"></div>
+        <div class="absolute right-0 top-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300"
+            id="sidebarContent">
+            <div class="p-6 border-b border-gray-100">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold text-gray-900">Filter Favorites</h3>
+                    <button id="closeSidebar"
+                        class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700">
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-close-line text-xl"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6 space-y-6 overflow-y-auto h-full pb-24">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Property Type</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="sr-only" data-filter="type" data-value="single">
+                            <div
+                                class="w-4 h-4 border-2 border-primary rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                <div class="w-2 h-2 bg-primary rounded-sm"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">Single Room</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="sr-only" data-filter="type" data-value="shared">
+                            <div
+                                class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">Shared Room</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="sr-only" data-filter="type" data-value="studio">
+                            <div
+                                class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">Studio</span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Price Range</label>
+                    <div class="relative">
+                        <input type="range" min="400" max="1000" value="700"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                            id="priceFilter">
+                        <div class="flex justify-between text-sm text-gray-500 mt-2">
+                            <span>$400</span>
+                            <span class="font-medium text-primary" id="priceValue">$700/month</span>
+                            <span>$1000</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Location</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="sr-only" data-filter="location" data-value="stanford">
+                            <div
+                                class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">Near Stanford</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="sr-only" data-filter="location" data-value="berkeley">
+                            <div
+                                class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">Near UC Berkeley</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="sr-only" data-filter="location" data-value="columbia">
+                            <div
+                                class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">Near Columbia</span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Date Added</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="dateFilter" value="recent" class="sr-only">
+                            <div
+                                class="w-4 h-4 border-2 border-primary rounded-full flex items-center justify-center mr-3 cursor-pointer radio-custom">
+                                <div class="w-2 h-2 bg-primary rounded-full"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">Last 7 days</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="dateFilter" value="month" class="sr-only">
+                            <div
+                                class="w-4 h-4 border-2 border-gray-300 rounded-full flex items-center justify-center mr-3 cursor-pointer radio-custom">
+                                <div class="w-2 h-2 bg-primary rounded-full hidden"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">Last 30 days</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="dateFilter" value="all" class="sr-only">
+                            <div
+                                class="w-4 h-4 border-2 border-gray-300 rounded-full flex items-center justify-center mr-3 cursor-pointer radio-custom">
+                                <div class="w-2 h-2 bg-primary rounded-full hidden"></div>
+                            </div>
+                            <span class="text-sm text-gray-700">All time</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-gray-100">
+                <div class="flex gap-3">
+                    <button id="clearFilters"
+                        class="flex-1 px-4 py-3 border border-gray-300 !rounded-button hover:border-primary text-sm font-medium whitespace-nowrap">Clear
+                        All</button>
+                    <button id="applyFilters"
+                        class="flex-1 bg-primary text-white px-4 py-3 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="removeModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-6 h-6 flex items-center justify-center text-red-600">
+                            <i class="ri-heart-line text-xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Remove from Favorites?</h3>
+                    <p class="text-gray-600 mb-6">This property will be removed from your saved list.</p>
+                    <div class="flex gap-3">
+                        <button id="cancelRemove"
+                            class="flex-1 px-4 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm font-medium whitespace-nowrap">Cancel</button>
+                        <button id="confirmRemove"
+                            class="flex-1 bg-red-600 text-white px-4 py-2 !rounded-button hover:bg-red-700 text-sm font-medium whitespace-nowrap">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-8 bg-gray-50 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">My Favorites</h1>
+                        <p class="text-gray-600" id="favoritesCount">8 Saved Properties</p>
+                    </div>
+                    <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                        data-readdy="true"
+                        class="bg-primary text-white px-6 py-3 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap flex items-center gap-2">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-search-line"></i>
+                        </div>
+                        Browse More
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-6">
+                    <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
+                        <div class="flex items-center gap-4 w-full lg:w-auto">
+                            <div class="relative">
+                                <select id="sortSelect"
+                                    class="pl-4 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm appearance-none bg-white min-w-40">
+                                    <option value="recent">Recently Added</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="distance">Distance</option>
+                                </select>
+                                <div
+                                    class="w-4 h-4 flex items-center justify-center absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                                    <i class="ri-arrow-down-s-line"></i>
+                                </div>
+                            </div>
+                            <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                                <button id="gridView"
+                                    class="px-3 py-1 rounded-md text-sm font-medium bg-white text-primary shadow-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-grid-line"></i>
+                                    </div>
+                                </button>
+                                <button id="listView"
+                                    class="px-3 py-1 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-list-unordered"></i>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="filterBtn"
+                            class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:border-primary text-sm font-medium whitespace-nowrap">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-filter-line"></i>
+                            </div>
+                            Filter
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="favoritesGrid" class="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                    data-price="650" data-type="single" data-location="stanford" data-date="2024-01-15">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Modern%20student%20dormitory%20room%20with%20single%20bed%2C%20study%20desk%2C%20wardrobe%2C%20and%20window%20with%20natural%20light%2C%20clean%20and%20organized%20space%2C%20contemporary%20furniture%2C%20bright%20and%20welcoming%20atmosphere%20for%20college%20students&width=400&height=250&seq=fav001&orientation=landscape"
+                            alt="Property" class="w-full h-48 object-cover object-top">
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 remove-favorite">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-heart-fill text-red-500"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                            $650/month</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Riverside Student Apartments</h3>
+                        <p class="text-sm text-gray-600 mb-3">0.3 miles from Stanford University</p>
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-sm text-gray-700">Single Room</span>
+                            <span class="text-sm text-secondary font-medium">Available Now</span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-wifi-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-car-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-washing-machine-line"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                                data-readdy="true"
+                                class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap text-center">View
+                                Details</a>
+                            <button
+                                class="px-3 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-message-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                    data-price="480" data-type="shared" data-location="berkeley" data-date="2024-01-10">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Shared%20student%20apartment%20living%20room%20with%20two%20study%20areas%2C%20comfortable%20seating%2C%20modern%20kitchen%20in%20background%2C%20bright%20natural%20lighting%2C%20contemporary%20furniture%20design%20for%20university%20students&width=400&height=250&seq=fav002&orientation=landscape"
+                            alt="Property" class="w-full h-48 object-cover object-top">
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 remove-favorite">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-heart-fill text-red-500"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                            $480/month</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Campus View Shared Housing</h3>
+                        <p class="text-sm text-gray-600 mb-3">0.7 miles from UC Berkeley</p>
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-sm text-gray-700">Shared Room</span>
+                            <span class="text-sm text-secondary font-medium">2 spots left</span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-wifi-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-washing-machine-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-restaurant-line"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                                data-readdy="true"
+                                class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap text-center">View
+                                Details</a>
+                            <button
+                                class="px-3 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-message-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                    data-price="950" data-type="studio" data-location="columbia" data-date="2024-01-20">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Luxury%20student%20studio%20apartment%20with%20modern%20kitchen%2C%20comfortable%20seating%20area%2C%20study%20desk%2C%20premium%20furnishings%2C%20large%20windows%20with%20city%20view%2C%20upscale%20design%20for%20university%20students&width=400&height=250&seq=fav003&orientation=landscape"
+                            alt="Property" class="w-full h-48 object-cover object-top">
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 remove-favorite">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-heart-fill text-red-500"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                            $950/month</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Premium Campus Studios</h3>
+                        <p class="text-sm text-gray-600 mb-3">0.2 miles from Columbia University</p>
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-sm text-gray-700">Studio</span>
+                            <span class="text-sm text-secondary font-medium">Available Mar 1</span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-wifi-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-car-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-dumbbell-line"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                                data-readdy="true"
+                                class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap text-center">View
+                                Details</a>
+                            <button
+                                class="px-3 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-message-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                    data-price="720" data-type="single" data-location="stanford" data-date="2024-01-18">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Student%20housing%20single%20bedroom%20with%20private%20bathroom%2C%20study%20area%20with%20bookshelf%2C%20comfortable%20bed%2C%20modern%20furnishings%2C%20natural%20lighting%20from%20large%20window%2C%20clean%20organized%20space%20for%20college%20students&width=400&height=250&seq=fav004&orientation=landscape"
+                            alt="Property" class="w-full h-48 object-cover object-top">
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 remove-favorite">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-heart-fill text-red-500"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                            $720/month</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">University Heights Residence</h3>
+                        <p class="text-sm text-gray-600 mb-3">0.5 miles from Harvard University</p>
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-sm text-gray-700">Single Room</span>
+                            <span class="text-sm text-secondary font-medium">Available Now</span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-wifi-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-washing-machine-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-shield-check-line"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                                data-readdy="true"
+                                class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap text-center">View
+                                Details</a>
+                            <button
+                                class="px-3 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-message-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                    data-price="520" data-type="shared" data-location="stanford" data-date="2024-01-12">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Shared%20student%20apartment%20with%20two%20beds%2C%20individual%20study%20desks%2C%20shared%20closet%20space%2C%20modern%20furniture%2C%20bright%20room%20with%20large%20windows%2C%20comfortable%20living%20space%20for%20university%20roommates&width=400&height=250&seq=fav005&orientation=landscape"
+                            alt="Property" class="w-full h-48 object-cover object-top">
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 remove-favorite">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-heart-fill text-red-500"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                            $520/month</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Green Valley Student Co-op</h3>
+                        <p class="text-sm text-gray-600 mb-3">0.8 miles from MIT</p>
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-sm text-gray-700">Shared Room</span>
+                            <span class="text-sm text-secondary font-medium">1 spot left</span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-wifi-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-bike-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-restaurant-line"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                                data-readdy="true"
+                                class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap text-center">View
+                                Details</a>
+                            <button
+                                class="px-3 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-message-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                    data-price="780" data-type="single" data-location="berkeley" data-date="2024-01-22">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Modern%20student%20apartment%20with%20balcony%2C%20contemporary%20furniture%2C%20floor-to-ceiling%20windows%2C%20stylish%20decor%2C%20bright%20and%20airy%20living%20space%2C%20perfect%20for%20university%20life&width=400&height=250&seq=fav006&orientation=landscape"
+                            alt="Property" class="w-full h-48 object-cover object-top">
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 remove-favorite">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-heart-fill text-red-500"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                            $780/month</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Skyline Student Residences</h3>
+                        <p class="text-sm text-gray-600 mb-3">0.4 miles from Yale University</p>
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-sm text-gray-700">Single Room</span>
+                            <span class="text-sm text-secondary font-medium">Available Apr 1</span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-wifi-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-car-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-dumbbell-line"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                                data-readdy="true"
+                                class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap text-center">View
+                                Details</a>
+                            <button
+                                class="px-3 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-message-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                    data-price="550" data-type="shared" data-location="columbia" data-date="2024-01-14">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Cozy%20shared%20student%20living%20space%20with%20modern%20kitchen%2C%20study%20nook%2C%20comfortable%20seating%20area%2C%20natural%20lighting%2C%20contemporary%20design%20for%20college%20roommates&width=400&height=250&seq=fav007&orientation=landscape"
+                            alt="Property" class="w-full h-48 object-cover object-top">
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 remove-favorite">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-heart-fill text-red-500"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                            $550/month</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">College Grove Commons</h3>
+                        <p class="text-sm text-gray-600 mb-3">0.6 miles from Princeton</p>
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-sm text-gray-700">Shared Room</span>
+                            <span class="text-sm text-secondary font-medium">3 spots left</span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-wifi-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-washing-machine-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-shield-check-line"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                                data-readdy="true"
+                                class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap text-center">View
+                                Details</a>
+                            <button
+                                class="px-3 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-message-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+                    data-price="920" data-type="studio" data-location="berkeley" data-date="2024-01-16">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=Luxury%20student%20studio%20with%20city%20views%2C%20modern%20appliances%2C%20designer%20furniture%2C%20spacious%20layout%2C%20high-end%20finishes%2C%20perfect%20for%20graduate%20students&width=400&height=250&seq=fav008&orientation=landscape"
+                            alt="Property" class="w-full h-48 object-cover object-top">
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 remove-favorite">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-heart-fill text-red-500"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                            $920/month</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Elite Campus Studios</h3>
+                        <p class="text-sm text-gray-600 mb-3">0.3 miles from Georgetown</p>
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-sm text-gray-700">Studio</span>
+                            <span class="text-sm text-secondary font-medium">Available Now</span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-wifi-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-car-line"></i>
+                            </div>
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                <i class="ri-restaurant-line"></i>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                                data-readdy="true"
+                                class="flex-1 bg-primary text-white py-2 !rounded-button hover:bg-blue-600 text-sm font-medium whitespace-nowrap text-center">View
+                                Details</a>
+                            <button
+                                class="px-3 py-2 border border-gray-300 !rounded-button hover:border-primary text-sm">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-message-line"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="emptyState" class="hidden text-center py-16">
+                <div class="max-w-md mx-auto">
+                    <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <div class="w-12 h-12 flex items-center justify-center text-gray-400">
+                            <i class="ri-heart-line text-3xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">No saved properties yet</h3>
+                    <p class="text-gray-600 mb-6">Start browsing properties and click the heart icon to save your
+                        favorites here.</p>
+                    <a href="https://readdy.ai/home/6bd98798-85bf-4fbc-97e7-5c624c46572f/ccf4b1cd-c544-4f00-ac5b-b7f9ac5b6553"
+                        data-readdy="true"
+                        class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-search-line"></i>
+                        </div>
+                        Start Browsing
+                    </a>
+                    <div class="mt-6 text-sm text-gray-500">
+                        <p class="mb-2"><strong>Tip:</strong> Click the heart icon on any property card to save it to
+                            your favorites.</p>
+                        <p>You can organize your saved properties by price, location, or date added.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">UniLodge</h3>
+                    <p class="text-gray-300 mb-4">Nigeria's trusted platform for student accommodation since 2020.</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-twitter-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Student Resources</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white">Housing Guide</a></li>
+                        <li><a href="#" class="hover:text-white">Moving Checklist</a></li>
+                        <li><a href="#" class="hover:text-white">Roommate Matching</a></li>
+                        <li><a href="#" class="hover:text-white">Safety Tips</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="hover:text-white">Report Issue</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4">Get notified about new listings and housing tips.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2024 UniLodge. All rights reserved.</p>
+                    <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-40">
+        <button
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-message-3-line text-xl"></i>
+            </div>
+        </button>
+    </div>
+
+    <script id="mobile-menu">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = mobileMenuBtn.querySelector('i');
+            let isMenuOpen = false;
+
+            mobileMenuBtn.addEventListener('click', function () {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.remove('ri-menu-line');
+                    menuIcon.classList.add('ri-close-line');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('ri-close-line');
+                    menuIcon.classList.add('ri-menu-line');
+                }
+            });
+
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 768) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('ri-close-line');
+                    menuIcon.classList.add('ri-menu-line');
+                    isMenuOpen = false;
+                }
+            });
+        });
+    </script>
+
+    <script id="filter-sidebar">
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterBtn = document.getElementById('filterBtn');
+            const filterSidebar = document.getElementById('filterSidebar');
+            const sidebarContent = document.getElementById('sidebarContent');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const applyFilters = document.getElementById('applyFilters');
+            const clearFilters = document.getElementById('clearFilters');
+            const priceFilter = document.getElementById('priceFilter');
+            const priceValue = document.getElementById('priceValue');
+
+            function openSidebar() {
+                filterSidebar.classList.remove('hidden');
+                setTimeout(() => {
+                    sidebarContent.classList.remove('translate-x-full');
+                }, 10);
+            }
+
+            function closeSidebarFn() {
+                sidebarContent.classList.add('translate-x-full');
+                setTimeout(() => {
+                    filterSidebar.classList.add('hidden');
+                }, 300);
+            }
+
+            filterBtn.addEventListener('click', openSidebar);
+            closeSidebar.addEventListener('click', closeSidebarFn);
+            sidebarOverlay.addEventListener('click', closeSidebarFn);
+
+            priceFilter.addEventListener('input', function () {
+                priceValue.textContent = `$${this.value}/month`;
+            });
+
+            const radioButtons = document.querySelectorAll('.radio-custom');
+            const checkboxes = document.querySelectorAll('.checkbox-custom');
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener('click', function () {
+                    const input = this.previousElementSibling;
+                    const name = input.name;
+                    document.querySelectorAll(`input[name="${name}"]`).forEach(otherInput => {
+                        const otherRadio = otherInput.nextElementSibling;
+                        const dot = otherRadio.querySelector('div');
+                        otherRadio.classList.remove('border-primary');
+                        otherRadio.classList.add('border-gray-300');
+                        dot.classList.add('hidden');
+                    });
+                    this.classList.remove('border-gray-300');
+                    this.classList.add('border-primary');
+                    const dot = this.querySelector('div');
+                    dot.classList.remove('hidden');
+                    input.checked = true;
+                });
+            });
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function () {
+                    const input = this.previousElementSibling;
+                    const check = this.querySelector('div');
+                    if (input.checked) {
+                        input.checked = false;
+                        this.classList.remove('border-primary');
+                        this.classList.add('border-gray-300');
+                        check.classList.add('hidden');
+                    } else {
+                        input.checked = true;
+                        this.classList.remove('border-gray-300');
+                        this.classList.add('border-primary');
+                        check.classList.remove('hidden');
+                    }
+                });
+            });
+
+            clearFilters.addEventListener('click', function () {
+                checkboxes.forEach(checkbox => {
+                    const input = checkbox.previousElementSibling;
+                    const check = checkbox.querySelector('div');
+                    input.checked = false;
+                    checkbox.classList.remove('border-primary');
+                    checkbox.classList.add('border-gray-300');
+                    check.classList.add('hidden');
+                });
+                radioButtons.forEach(radio => {
+                    const input = radio.previousElementSibling;
+                    const dot = radio.querySelector('div');
+                    input.checked = false;
+                    radio.classList.remove('border-primary');
+                    radio.classList.add('border-gray-300');
+                    dot.classList.add('hidden');
+                });
+                priceFilter.value = 700;
+                priceValue.textContent = '$700/month';
+            });
+
+            applyFilters.addEventListener('click', function () {
+                closeSidebarFn();
+            });
+        });
+    </script>
+
+    <script id="favorites-management">
+        document.addEventListener('DOMContentLoaded', function () {
+            const favoritesGrid = document.getElementById('favoritesGrid');
+            const emptyState = document.getElementById('emptyState');
+            const favoritesCount = document.getElementById('favoritesCount');
+            const removeModal = document.getElementById('removeModal');
+            const cancelRemove = document.getElementById('cancelRemove');
+            const confirmRemove = document.getElementById('confirmRemove');
+            const sortSelect = document.getElementById('sortSelect');
+            const gridView = document.getElementById('gridView');
+            const listView = document.getElementById('listView');
+            let currentPropertyToRemove = null;
+            let currentFavoritesCount = 8;
+
+            function updateFavoritesCount() {
+                const visibleCards = favoritesGrid.querySelectorAll('.bg-white:not(.hidden)').length;
+                favoritesCount.textContent = `${visibleCards} Saved Properties`;
+                currentFavoritesCount = visibleCards;
+                if (visibleCards === 0) {
+                    favoritesGrid.classList.add('hidden');
+                    emptyState.classList.remove('hidden');
+                } else {
+                    favoritesGrid.classList.remove('hidden');
+                    emptyState.classList.add('hidden');
+                }
+            }
+
+            document.querySelectorAll('.remove-favorite').forEach(button => {
+                button.addEventListener('click', function () {
+                    currentPropertyToRemove = this.closest('.bg-white');
+                    removeModal.classList.remove('hidden');
+                });
+            });
+
+            cancelRemove.addEventListener('click', function () {
+                removeModal.classList.add('hidden');
+                currentPropertyToRemove = null;
+            });
+
+            confirmRemove.addEventListener('click', function () {
+                if (currentPropertyToRemove) {
+                    currentPropertyToRemove.style.opacity = '0';
+                    currentPropertyToRemove.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        currentPropertyToRemove.remove();
+                        updateFavoritesCount();
+                    }, 200);
+                }
+                removeModal.classList.add('hidden');
+                currentPropertyToRemove = null;
+            });
+
+            sortSelect.addEventListener('change', function () {
+                const sortValue = this.value;
+                const cards = Array.from(favoritesGrid.children);
+
+                cards.sort((a, b) => {
+                    switch (sortValue) {
+                        case 'price-low':
+                            return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                        case 'price-high':
+                            return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                        case 'distance':
+                            const distanceA = parseFloat(a.querySelector('.text-sm.text-gray-600').textContent);
+                            const distanceB = parseFloat(b.querySelector('.text-sm.text-gray-600').textContent);
+                            return distanceA - distanceB;
+                        case 'recent':
+                        default:
+                            return new Date(b.dataset.date) - new Date(a.dataset.date);
+                    }
+                });
+
+                cards.forEach(card => favoritesGrid.appendChild(card));
+            });
+
+            gridView.addEventListener('click', function () {
+                this.classList.add('bg-white', 'text-primary', 'shadow-sm');
+                this.classList.remove('text-gray-600');
+                listView.classList.remove('bg-white', 'text-primary', 'shadow-sm');
+                listView.classList.add('text-gray-600');
+                favoritesGrid.className = 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6';
+            });
+
+            listView.addEventListener('click', function () {
+                this.classList.add('bg-white', 'text-primary', 'shadow-sm');
+                this.classList.remove('text-gray-600');
+                gridView.classList.remove('bg-white', 'text-primary', 'shadow-sm');
+                gridView.classList.add('text-gray-600');
+                favoritesGrid.className = 'grid grid-cols-1 gap-4';
+            });
+
+            removeModal.addEventListener('click', function (e) {
+                if (e.target === removeModal) {
+                    removeModal.classList.add('hidden');
+                    currentPropertyToRemove = null;
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

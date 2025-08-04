@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Housing Guide - UniLodge</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3B82F6', secondary: '#1E40AF' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <header class="w-full bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-['Pacifico'] text-primary">UniLodge</h1>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="search.html" data-readdy="true"
+                        class="text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="favorites.html" data-readdy="true"
+                        class="text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex items-center space-x-3">
+                        <button class="text-gray-700 hover:text-primary font-medium">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </nav>
+                <button id="mobileMenuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+                    <div class="w-6 h-6 flex items-center justify-center">
+                        <i class="ri-menu-line text-2xl"></i>
+                    </div>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="search.html" data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="favorites.html" data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex flex-col space-y-2 px-3 py-2">
+                        <button class="text-gray-700 hover:text-primary font-medium text-left">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Student Housing Guide</h1>
+            <p class="text-xl text-gray-600 mb-8">Your comprehensive guide to finding perfect student accommodation near
+                Nigerian universities. Learn how to navigate our platform and secure your ideal living space.</p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <a href="#process"
+                    class="bg-white text-primary px-6 py-3 !rounded-button shadow-md hover:shadow-lg transition-all whitespace-nowrap">Getting
+                    Started</a>
+                <a href="#search-tips"
+                    class="bg-white text-primary px-6 py-3 !rounded-button shadow-md hover:shadow-lg transition-all whitespace-nowrap">Search
+                    Tips</a>
+                <a href="#property-types"
+                    class="bg-white text-primary px-6 py-3 !rounded-button shadow-md hover:shadow-lg transition-all whitespace-nowrap">Property
+                    Types</a>
+                <a href="#faq"
+                    class="bg-white text-primary px-6 py-3 !rounded-button shadow-md hover:shadow-lg transition-all whitespace-nowrap">FAQ</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 py-16">
+        <section id="process" class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Step-by-Step Process</h2>
+            <div class="grid md:grid-cols-5 gap-8">
+                <div class="text-center">
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                        1</div>
+                    <div class="w-6 h-6 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-user-add-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Create Account</h3>
+                    <p class="text-gray-600 text-sm">Sign up with your student email and complete your profile</p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                        2</div>
+                    <div class="w-6 h-6 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-search-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Search Properties</h3>
+                    <p class="text-gray-600 text-sm">Use filters to find accommodation that matches your needs</p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                        3</div>
+                    <div class="w-6 h-6 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-calendar-check-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Book Inspection</h3>
+                    <p class="text-gray-600 text-sm">Schedule visits to see properties in person</p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                        4</div>
+                    <div class="w-6 h-6 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-file-text-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Submit Application</h3>
+                    <p class="text-gray-600 text-sm">Complete application with required documents</p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                        5</div>
+                    <div class="w-6 h-6 flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-home-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Move In</h3>
+                    <p class="text-gray-600 text-sm">Complete payment and collect your keys</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="search-tips" class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">How to Search Effectively</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-8 h-8 flex items-center justify-center mb-4">
+                        <i class="ri-filter-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Use Filters Wisely</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• Set your budget range first</li>
+                        <li>• Choose preferred location near your university</li>
+                        <li>• Select room type that suits your needs</li>
+                        <li>• Filter by essential amenities</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-8 h-8 flex items-center justify-center mb-4">
+                        <i class="ri-map-pin-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Location Matters</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• Check distance to campus</li>
+                        <li>• Consider transportation options</li>
+                        <li>• Look for nearby amenities</li>
+                        <li>• Research neighborhood safety</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="w-8 h-8 flex items-center justify-center mb-4">
+                        <i class="ri-image-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Read Descriptions Carefully</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>• Check what's included in rent</li>
+                        <li>• Note utility arrangements</li>
+                        <li>• Review house rules</li>
+                        <li>• Look for recent photos</li>
+                    </ul>
+                </div>
+
+                <div class="bg-primary/5 p-6 rounded-lg border border-primary/20">
+                    <div class="w-8 h-8 flex items-center justify-center mb-4">
+                        <i class="ri-lightbulb-line text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-primary mb-3">Pro Tips</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li>• Save properties you like for comparison</li>
+                        <li>• Contact landlords early for popular listings</li>
+                        <li>• Ask about move-in dates and flexibility</li>
+                        <li>• Read reviews from previous tenants</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="property-types" class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Property Types Overview</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://readdy.ai/api/search-image?query=modern%20single%20student%20room%20with%20bed%20desk%20and%20wardrobe%20clean%20minimalist%20interior%20design%20bright%20natural%20lighting&width=300&height=200&seq=room1&orientation=landscape"
+                        alt="Single Room" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Single Rooms</h3>
+                        <p class="text-gray-600 mb-3">Private room with shared common areas</p>
+                        <div class="text-sm text-gray-500 mb-4">₦80,000 - ₦150,000/term</div>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-green-600 text-sm">
+                                <i class="ri-check-line mr-2"></i>
+                                <span>Privacy and personal space</span>
+                            </div>
+                            <div class="flex items-center text-green-600 text-sm">
+                                <i class="ri-check-line mr-2"></i>
+                                <span>Affordable option</span>
+                            </div>
+                            <div class="flex items-center text-red-500 text-sm">
+                                <i class="ri-close-line mr-2"></i>
+                                <span>Shared kitchen/bathroom</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://readdy.ai/api/search-image?query=modern%20shared%20student%20apartment%20with%20multiple%20bedrooms%20living%20room%20kitchen%20contemporary%20furniture%20bright%20airy%20space&width=300&height=200&seq=apartment1&orientation=landscape"
+                        alt="Shared Apartment" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Shared Apartments</h3>
+                        <p class="text-gray-600 mb-3">2-4 bedroom apartments with roommates</p>
+                        <div class="text-sm text-gray-500 mb-4">₦100,000 - ₦200,000/term</div>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-green-600 text-sm">
+                                <i class="ri-check-line mr-2"></i>
+                                <span>Social living experience</span>
+                            </div>
+                            <div class="flex items-center text-green-600 text-sm">
+                                <i class="ri-check-line mr-2"></i>
+                                <span>Shared costs</span>
+                            </div>
+                            <div class="flex items-center text-red-500 text-sm">
+                                <i class="ri-close-line mr-2"></i>
+                                <span>Less privacy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://readdy.ai/api/search-image?query=modern%20studio%20apartment%20for%20student%20compact%20efficient%20layout%20with%20bed%20study%20area%20kitchenette%20contemporary%20design%20bright%20lighting&width=300&height=200&seq=studio1&orientation=landscape"
+                        alt="Studio Unit" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Studio Units</h3>
+                        <p class="text-gray-600 mb-3">Self-contained unit with kitchenette</p>
+                        <div class="text-sm text-gray-500 mb-4">₦150,000 - ₦250,000/term</div>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-green-600 text-sm">
+                                <i class="ri-check-line mr-2"></i>
+                                <span>Complete independence</span>
+                            </div>
+                            <div class="flex items-center text-green-600 text-sm">
+                                <i class="ri-check-line mr-2"></i>
+                                <span>Own kitchen facilities</span>
+                            </div>
+                            <div class="flex items-center text-red-500 text-sm">
+                                <i class="ri-close-line mr-2"></i>
+                                <span>Higher cost</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://readdy.ai/api/search-image?query=modern%20en-suite%20student%20room%20with%20private%20bathroom%20bedroom%20study%20desk%20wardrobe%20contemporary%20interior%20design%20clean%20bright%20space&width=300&height=200&seq=ensuite1&orientation=landscape"
+                        alt="En-suite Room" class="w-full h-48 object-cover object-top">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">En-suite Rooms</h3>
+                        <p class="text-gray-600 mb-3">Private room with attached bathroom</p>
+                        <div class="text-sm text-gray-500 mb-4">₦120,000 - ₦200,000/term</div>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-green-600 text-sm">
+                                <i class="ri-check-line mr-2"></i>
+                                <span>Private bathroom</span>
+                            </div>
+                            <div class="flex items-center text-green-600 text-sm">
+                                <i class="ri-check-line mr-2"></i>
+                                <span>Good privacy balance</span>
+                            </div>
+                            <div class="flex items-center text-red-500 text-sm">
+                                <i class="ri-close-line mr-2"></i>
+                                <span>Shared kitchen</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="considerations" class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Important Considerations</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Budget Planning Checklist</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Calculate total semester costs</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Factor in utility costs</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Consider security deposit</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Budget for moving costs</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Plan for emergency fund</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Location & Safety Checklist</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Check distance to campus</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Verify security measures</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Assess internet connectivity</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Check transportation options</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="hidden peer">
+                            <div
+                                class="w-5 h-5 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                            </div>
+                            <span class="ml-3 text-gray-700">Research neighborhood amenities</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="documents" class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Required Documents</h2>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Student Documents</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 flex items-center justify-center mr-3">
+                                    <i class="ri-file-text-line text-primary"></i>
+                                </div>
+                                <span class="text-gray-700">Valid Student ID Card</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 flex items-center justify-center mr-3">
+                                    <i class="ri-file-text-line text-primary"></i>
+                                </div>
+                                <span class="text-gray-700">Proof of Enrollment Letter</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 flex items-center justify-center mr-3">
+                                    <i class="ri-file-text-line text-primary"></i>
+                                </div>
+                                <span class="text-gray-700">Academic Transcript</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 flex items-center justify-center mr-3">
+                                    <i class="ri-file-text-line text-primary"></i>
+                                </div>
+                                <span class="text-gray-700">Passport Photograph</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Financial & Guarantor</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 flex items-center justify-center mr-3">
+                                    <i class="ri-file-text-line text-primary"></i>
+                                </div>
+                                <span class="text-gray-700">Bank Statement</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 flex items-center justify-center mr-3">
+                                    <i class="ri-file-text-line text-primary"></i>
+                                </div>
+                                <span class="text-gray-700">Guarantor's ID & Letter</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 flex items-center justify-center mr-3">
+                                    <i class="ri-file-text-line text-primary"></i>
+                                </div>
+                                <span class="text-gray-700">Proof of Income (Parent/Guardian)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 flex items-center justify-center mr-3">
+                                    <i class="ri-file-text-line text-primary"></i>
+                                </div>
+                                <span class="text-gray-700">Emergency Contact Information</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <div class="flex items-start">
+                        <div class="w-6 h-6 flex items-center justify-center mr-3 mt-0.5">
+                            <i class="ri-information-line text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-blue-900 mb-1">Important Note</h4>
+                            <p class="text-blue-800 text-sm">All documents should be clear, legible copies. Some
+                                landlords may require original documents for verification during move-in.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="w-full p-6 text-left flex justify-between items-center faq-toggle"
+                        data-target="faq1">
+                        <span class="text-lg font-semibold text-gray-900">How do I make payments on UniLodge?</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line text-xl text-gray-500 faq-icon"></i>
+                        </div>
+                    </button>
+                    <div id="faq1" class="px-6 pb-6 hidden faq-content">
+                        <p class="text-gray-600">We accept multiple payment methods including bank transfers, online
+                            payments, and mobile money. You can pay in installments or full semester payments. All
+                            transactions are secure and verified.</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm text-gray-500">Was this helpful?</span>
+                            <button class="text-green-600 hover:text-green-700 text-sm">Yes</button>
+                            <button class="text-red-600 hover:text-red-700 text-sm">No</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="w-full p-6 text-left flex justify-between items-center faq-toggle"
+                        data-target="faq2">
+                        <span class="text-lg font-semibold text-gray-900">What is the booking process?</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line text-xl text-gray-500 faq-icon"></i>
+                        </div>
+                    </button>
+                    <div id="faq2" class="px-6 pb-6 hidden faq-content">
+                        <p class="text-gray-600">After finding a property you like, schedule an inspection, submit your
+                            application with required documents, pay the security deposit, and complete the lease
+                            agreement. The entire process typically takes 3-7 days.</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm text-gray-500">Was this helpful?</span>
+                            <button class="text-green-600 hover:text-green-700 text-sm">Yes</button>
+                            <button class="text-red-600 hover:text-red-700 text-sm">No</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="w-full p-6 text-left flex justify-between items-center faq-toggle"
+                        data-target="faq3">
+                        <span class="text-lg font-semibold text-gray-900">Can I cancel my booking?</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line text-xl text-gray-500 faq-icon"></i>
+                        </div>
+                    </button>
+                    <div id="faq3" class="px-6 pb-6 hidden faq-content">
+                        <p class="text-gray-600">Cancellation policies vary by property. Generally, you can cancel
+                            within 48 hours of booking for a full refund. After that, cancellation fees may apply. Check
+                            the specific property's cancellation policy before booking.</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm text-gray-500">Was this helpful?</span>
+                            <button class="text-green-600 hover:text-green-700 text-sm">Yes</button>
+                            <button class="text-red-600 hover:text-red-700 text-sm">No</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="w-full p-6 text-left flex justify-between items-center faq-toggle"
+                        data-target="faq4">
+                        <span class="text-lg font-semibold text-gray-900">How do I report maintenance issues?</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line text-xl text-gray-500 faq-icon"></i>
+                        </div>
+                    </button>
+                    <div id="faq4" class="px-6 pb-6 hidden faq-content">
+                        <p class="text-gray-600">Use our mobile app or website to report maintenance issues. Include
+                            photos and detailed descriptions. Emergency issues are addressed within 24 hours, while
+                            routine maintenance typically takes 3-5 business days.</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm text-gray-500">Was this helpful?</span>
+                            <button class="text-green-600 hover:text-green-700 text-sm">Yes</button>
+                            <button class="text-red-600 hover:text-red-700 text-sm">No</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="w-full p-6 text-left flex justify-between items-center faq-toggle"
+                        data-target="faq5">
+                        <span class="text-lg font-semibold text-gray-900">What about security deposits?</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line text-xl text-gray-500 faq-icon"></i>
+                        </div>
+                    </button>
+                    <div id="faq5" class="px-6 pb-6 hidden faq-content">
+                        <p class="text-gray-600">Security deposits are typically equivalent to one month's rent. They
+                            are refundable at the end of your lease, subject to property inspection. Deductions may be
+                            made for damages beyond normal wear and tear.</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm text-gray-500">Was this helpful?</span>
+                            <button class="text-green-600 hover:text-green-700 text-sm">Yes</button>
+                            <button class="text-red-600 hover:text-red-700 text-sm">No</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="w-full p-6 text-left flex justify-between items-center faq-toggle"
+                        data-target="faq6">
+                        <span class="text-lg font-semibold text-gray-900">How long are lease agreements?</span>
+                        <div class="w-6 h-6 flex items-center justify-center">
+                            <i class="ri-add-line text-xl text-gray-500 faq-icon"></i>
+                        </div>
+                    </button>
+                    <div id="faq6" class="px-6 pb-6 hidden faq-content">
+                        <p class="text-gray-600">Most student accommodations offer semester-based leases (4-6 months) or
+                            full academic year leases (9-10 months). Some properties also offer monthly rentals with
+                            higher rates. Choose based on your academic schedule.</p>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm text-gray-500">Was this helpful?</span>
+                            <button class="text-green-600 hover:text-green-700 text-sm">Yes</button>
+                            <button class="text-red-600 hover:text-red-700 text-sm">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="support" class="mb-20">
+            <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-lg p-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4">Need More Help?</h2>
+                    <p class="text-xl mb-8">Our support team is here to assist you every step of the way</p>
+
+                    <div class="grid md:grid-cols-3 gap-8 mb-8">
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-phone-line text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Call Us</h3>
+                            <p class="text-white/90">+234 800 123 4567</p>
+                            <p class="text-sm text-white/80">Mon-Fri 8AM-6PM</p>
+                        </div>
+
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-mail-line text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Email Support</h3>
+                            <p class="text-white/90">help@unilodge.ng</p>
+                            <p class="text-sm text-white/80">24/7 Response</p>
+                        </div>
+
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-chat-3-line text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Live Chat</h3>
+                            <p class="text-white/90">Instant messaging</p>
+                            <p class="text-sm text-white/80">Available on website</p>
+                        </div>
+                    </div>
+
+                    <button
+                        class="bg-white text-primary px-8 py-3 !rounded-button font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap">Contact
+                        Support Team</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">UniLodge</h3>
+                    <p class="text-gray-300 mb-4">Nigeria's trusted platform for student accommodation since 2020.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-twitter-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Student Resources</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white">Housing Guide</a></li>
+                        <li><a href="#" class="hover:text-white">Moving Checklist</a></li>
+                        <li><a href="#" class="hover:text-white">Roommate Matching</a></li>
+                        <li><a href="#" class="hover:text-white">Safety Tips</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="hover:text-white">Report Issue</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4">Get notified about new listings and housing tips.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2024 CampusStay. All rights reserved.</p>
+                    <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-message-3-line text-xl"></i>
+            </div>
+        </button>
+    </div>
+
+    <script id="faq-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-target');
+                    const content = document.getElementById(targetId);
+                    const icon = this.querySelector('.faq-icon');
+
+                    if (content.classList.contains('hidden')) {
+                        content.classList.remove('hidden');
+                        icon.className = 'ri-subtract-line text-xl text-gray-500 faq-icon';
+                    } else {
+                        content.classList.add('hidden');
+                        icon.className = 'ri-add-line text-xl text-gray-500 faq-icon';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="checkbox-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const checkIcon = this.nextElementSibling.querySelector('i');
+                    if (this.checked) {
+                        checkIcon.classList.remove('hidden');
+                    } else {
+                        checkIcon.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="smooth-scroll">
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('a[href^="#"]');
+
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

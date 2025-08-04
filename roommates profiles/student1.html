@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah Johnson - Profile - UniLodge</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3B82F6', secondary: '#1E40AF' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <header class="w-full bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                 <div class="flex items-center space-x-4">
+                    <a href="roommatematching.html"
+                        data-readdy="true" class="flex items-center text-gray-600 hover:text-primary transition-colors">
+                        <div class="w-5 h-5 flex items-center justify-center mr-2">
+                            <i class="ri-arrow-left-line"></i>
+                        </div>
+                        <span>Back to Search</span>
+                    </a>
+                    <h1 class="text-2xl font-['Pacifico'] text-primary">Dorm4Me</h1>
+                </div>
+               
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="../search.html"
+                        data-readdy="true" class="text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="../favorites.html"
+                        data-readdy="true" class="text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex items-center space-x-3">
+                        <button class="text-gray-700 hover:text-primary font-medium">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </nav>
+                <button id="mobileMenuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+                    <div class="w-6 h-6 flex items-center justify-center">
+                        <i class="ri-menu-line text-2xl"></i>
+                    </div>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="../index.html" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="../search.html"
+                        data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="../favorites.html"
+                        data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex flex-col space-y-2 px-3 py-2">
+                        <button class="text-gray-700 hover:text-primary font-medium text-left">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+            <div class="relative h-80">
+                <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20portrait%20smiling%20confident%20natural%20lighting%20modern%20background%20professional%20headshot%20style%20banner%20format&width=800&height=320&seq=sarah-banner&orientation=landscape"
+                    alt="Sarah Johnson Profile" class="w-full h-full object-cover object-top">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 text-white">
+                    <div class="flex items-center space-x-4 mb-2">
+                        <h1 class="text-3xl font-bold">Sarah Johnson</h1>
+                        <div class="bg-green-500 px-4 py-2 rounded-full text-sm font-semibold">92% Match</div>
+                    </div>
+                    <p class="text-lg opacity-90">Computer Science • University of Lagos</p>
+                    <p class="text-sm opacity-75">21 years old • Looking to move in: January 2025</p>
+                </div>
+                <div class="absolute top-6 right-6 flex space-x-3">
+                    <button
+                        class="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors save-btn">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-heart-line"></i>
+                        </div>
+                    </button>
+                    <button
+                        class="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-share-line"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">About Sarah</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        I'm a dedicated Computer Science student at the University of Lagos, passionate about technology
+                        and innovation. I believe in maintaining a clean, organized living space while fostering a
+                        supportive environment for academic success. I enjoy studying together with roommates and
+                        occasional movie nights to unwind.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Looking for a roommate who shares similar values about cleanliness, respect, and academic focus.
+                        I'm organized, reliable, and always considerate of shared spaces. I believe good communication
+                        is key to a harmonious living arrangement.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Photo Gallery</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity gallery-item">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20studying%20in%20library%20focused%20natural%20lighting%20academic%20environment&width=200&height=200&seq=sarah-study&orientation=squarish"
+                                alt="Sarah studying" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity gallery-item">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20cooking%20in%20modern%20kitchen%20smiling%20natural%20lighting%20lifestyle&width=200&height=200&seq=sarah-cooking&orientation=squarish"
+                                alt="Sarah cooking" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity gallery-item">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20reading%20book%20relaxed%20comfortable%20setting%20natural%20lighting&width=200&height=200&seq=sarah-reading&orientation=squarish"
+                                alt="Sarah reading" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity gallery-item">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20with%20friends%20campus%20social%20happy%20natural%20lighting&width=200&height=200&seq=sarah-friends&orientation=squarish"
+                                alt="Sarah with friends" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity gallery-item">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20organized%20clean%20room%20tidy%20space%20natural%20lighting&width=200&height=200&seq=sarah-room&orientation=squarish"
+                                alt="Sarah's room" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div
+                            class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity gallery-item">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20outdoor%20campus%20casual%20portrait%20natural%20lighting&width=200&height=200&seq=sarah-outdoor&orientation=squarish"
+                                alt="Sarah outdoors" class="w-full h-full object-cover object-top">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md">
+                    <div class="p-6 border-b border-gray-200">
+                        <button class="w-full flex items-center justify-between text-left personal-details-toggle">
+                            <h2 class="text-xl font-semibold text-gray-900">Personal Details</h2>
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="p-6 personal-details-content">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Full Name</h3>
+                                <p class="text-gray-900">Sarah Johnson</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Age</h3>
+                                <p class="text-gray-900">21 years old</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">University</h3>
+                                <p class="text-gray-900">University of Lagos</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Major</h3>
+                                <p class="text-gray-900">Computer Science</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Year of Study</h3>
+                                <p class="text-gray-900">3rd Year</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Languages</h3>
+                                <p class="text-gray-900">English, Yoruba, French</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Hometown</h3>
+                                <p class="text-gray-900">Lagos, Nigeria</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Interests</h3>
+                                <p class="text-gray-900">Technology, Reading, Movies, Cooking</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md">
+                    <div class="p-6 border-b border-gray-200">
+                        <button class="w-full flex items-center justify-between text-left lifestyle-toggle">
+                            <h2 class="text-xl font-semibold text-gray-900">Lifestyle & Preferences</h2>
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="p-6 lifestyle-content">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Sleep Schedule</h3>
+                                <p class="text-gray-900">Early Bird (10 PM - 6 AM)</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Cleanliness Level</h3>
+                                <p class="text-gray-900">Very Clean & Organized</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Study Habits</h3>
+                                <p class="text-gray-900">Quiet Study, Group Projects</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Social Preferences</h3>
+                                <p class="text-gray-900">Moderate Social Activity</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Smoking</h3>
+                                <p class="text-gray-900">Non-Smoker</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Drinking</h3>
+                                <p class="text-gray-900">Occasionally, Socially</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Pets</h3>
+                                <p class="text-gray-900">No Pets, Open to Roommate's</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Guests</h3>
+                                <p class="text-gray-900">Occasional, With Notice</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md">
+                    <div class="p-6 border-b border-gray-200">
+                        <button class="w-full flex items-center justify-between text-left room-requirements-toggle">
+                            <h2 class="text-xl font-semibold text-gray-900">Room Requirements</h2>
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-arrow-down-s-line text-gray-400 transition-transform"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="p-6 room-requirements-content">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Move-in Date</h3>
+                                <p class="text-gray-900">January 15, 2025</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Budget Range</h3>
+                                <p class="text-gray-900">₦80,000 - ₦120,000/month</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Location Preference</h3>
+                                <p class="text-gray-900">Yaba, Akoka, Surulere</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Room Type</h3>
+                                <p class="text-gray-900">Shared 2-3 Bedroom</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Duration</h3>
+                                <p class="text-gray-900">1 Academic Year (Renewable)</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">Amenities</h3>
+                                <p class="text-gray-900">WiFi, Kitchen, Study Area</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Compatibility Score</h2>
+                    <div class="text-center mb-6">
+                        <div class="inline-flex items-center justify-center w-24 h-24 bg-green-100 rounded-full mb-3">
+                            <span class="text-2xl font-bold text-green-600">92%</span>
+                        </div>
+                        <p class="text-gray-600">Excellent Match</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Lifestyle Compatibility</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-20 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-900">95%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Study Habits</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-20 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-900">90%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Social Preferences</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-20 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 88%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-900">88%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Budget Range</span>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-20 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-900">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Common Interests</h2>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">
+                            <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                <i class="ri-forbid-line"></i>
+                            </div>
+                            Non-smoking
+                        </span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-800">
+                            <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                <i class="ri-volume-down-line"></i>
+                            </div>
+                            Quiet Environment
+                        </span>
+                        <span
+                            class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-purple-100 text-purple-800">
+                            <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                <i class="ri-book-line"></i>
+                            </div>
+                            Study Focused
+                        </span>
+                        <span
+                            class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-orange-100 text-orange-800">
+                            <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                <i class="ri-restaurant-line"></i>
+                            </div>
+                            Cooking
+                        </span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-pink-100 text-pink-800">
+                            <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                <i class="ri-film-line"></i>
+                            </div>
+                            Movies
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Contact Sarah</h2>
+                    <div class="space-y-3">
+                        <button
+                            class="w-full bg-primary text-white py-3 px-4 !rounded-button hover:bg-secondary transition-colors whitespace-nowrap font-medium">
+                            <div class="flex items-center justify-center space-x-2">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-message-3-line"></i>
+                                </div>
+                                <span>Send Message</span>
+                            </div>
+                        </button>
+                        <button
+                            class="w-full border border-primary text-primary py-3 px-4 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap font-medium">
+                            <div class="flex items-center justify-center space-x-2">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-user-add-line"></i>
+                                </div>
+                                <span>Send Connection Request</span>
+                            </div>
+                        </button>
+                        <div class="flex space-x-3">
+                            <button
+                                class="flex-1 border border-gray-300 text-gray-700 py-3 px-4 !rounded-button hover:border-gray-400 transition-colors whitespace-nowrap font-medium">
+                                <div class="flex items-center justify-center space-x-2">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-flag-line"></i>
+                                    </div>
+                                    <span>Report</span>
+                                </div>
+                            </button>
+                            <button
+                                class="flex-1 border border-gray-300 text-gray-700 py-3 px-4 !rounded-button hover:border-gray-400 transition-colors whitespace-nowrap font-medium">
+                                <div class="flex items-center justify-center space-x-2">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-share-line"></i>
+                                    </div>
+                                    <span>Share</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Verification Status</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 flex items-center justify-center bg-green-100 rounded-full">
+                                <i class="ri-check-line text-green-600 text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-700">University Email Verified</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 flex items-center justify-center bg-green-100 rounded-full">
+                                <i class="ri-check-line text-green-600 text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-700">Phone Number Verified</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 flex items-center justify-center bg-green-100 rounded-full">
+                                <i class="ri-check-line text-green-600 text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-700">Student ID Verified</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-6 h-6 flex items-center justify-center bg-yellow-100 rounded-full">
+                                <i class="ri-time-line text-yellow-600 text-sm"></i>
+                            </div>
+                            <span class="text-sm text-gray-700">Background Check Pending</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-lg lg:hidden">
+        <div class="max-w-5xl mx-auto flex space-x-3">
+            <button
+                class="flex-1 bg-primary text-white py-3 px-4 !rounded-button hover:bg-secondary transition-colors whitespace-nowrap font-medium">
+                <div class="flex items-center justify-center space-x-2">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-message-3-line"></i>
+                    </div>
+                    <span>Message</span>
+                </div>
+            </button>
+            <button
+                class="flex-1 border border-primary text-primary py-3 px-4 !rounded-button hover:bg-primary hover:text-white transition-colors whitespace-nowrap font-medium">
+                <div class="flex items-center justify-center space-x-2">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <i class="ri-heart-line"></i>
+                    </div>
+                    <span>Save</span>
+                </div>
+            </button>
+            <a href="https://readdy.ai/home/2152ace8-d55e-428e-a5ee-2e2956f469dd/5c1ad807-a528-4dd0-972e-48f944cfea44"
+                data-readdy="true" class="flex-1">
+                <button
+                    class="w-full border border-gray-300 text-gray-700 py-3 px-4 !rounded-button hover:border-gray-400 transition-colors whitespace-nowrap font-medium">
+                    <div class="flex items-center justify-center space-x-2">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-arrow-left-line"></i>
+                        </div>
+                        <span>Back</span>
+                    </div>
+                </button>
+            </a>
+        </div>
+    </div>
+
+     <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">UniLodge</h3>
+                    <p class="text-gray-300 mb-4">Nigeria's trusted platform for student accommodation since 2020.</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-twitter-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Student Resources</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="../housingguide.html" class="hover:text-white">Housing Guide</a></li>
+                        <li><a href="../movingchecklist.html" class="hover:text-white">Moving Checklist</a></li>
+                        <li><a href="roommates proflies/roommatematching.html" class="hover:text-white">Roommate Matching</a></li>
+                        <li><a href="../safetytips.html" class="hover:text-white">Safety Tips</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="../helpcenter.html" class="hover:text-white">Help Center</a></li>
+                        <li><a href="../contact.html" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="../about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="../reportissue.html" class="hover:text-white">Report Issue</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4">Get notified about new listings and housing tips.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button
+                            class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-blue-600 font-medium whitespace-nowrap">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2024 Dorm4Me. All rights reserved.</p>
+                    <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-message-3-line text-xl"></i>
+            </div>
+        </button>
+    </div>
+
+    <script id="save-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const saveBtn = document.querySelector('.save-btn');
+            const saveIcon = saveBtn.querySelector('i');
+            let isSaved = false;
+
+            saveBtn.addEventListener('click', function () {
+                isSaved = !isSaved;
+                if (isSaved) {
+                    saveIcon.className = 'ri-heart-fill';
+                    saveBtn.classList.add('text-red-500');
+                } else {
+                    saveIcon.className = 'ri-heart-line';
+                    saveBtn.classList.remove('text-red-500');
+                }
+            });
+        });
+    </script>
+
+    <script id="gallery-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const img = this.querySelector('img');
+                    const modal = document.createElement('div');
+                    modal.className = 'fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4';
+                    modal.innerHTML = `
+<div class="relative max-w-4xl max-h-full">
+<img src="${img.src}" alt="${img.alt}" class="max-w-full max-h-full object-contain rounded-lg">
+<button class="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black/70 transition-colors close-modal">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-close-line"></i>
+</div>
+</button>
+</div>
+`;
+                    document.body.appendChild(modal);
+
+                    const closeBtn = modal.querySelector('.close-modal');
+                    closeBtn.addEventListener('click', function () {
+                        document.body.removeChild(modal);
+                    });
+
+                    modal.addEventListener('click', function (e) {
+                        if (e.target === modal) {
+                            document.body.removeChild(modal);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script id="collapsible-sections">
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggles = [
+                {
+                    toggle: '.personal-details-toggle',
+                    content: '.personal-details-content'
+                },
+                {
+                    toggle: '.lifestyle-toggle',
+                    content: '.lifestyle-content'
+                },
+                {
+                    toggle: '.room-requirements-toggle',
+                    content: '.room-requirements-content'
+                }
+            ];
+
+            toggles.forEach(section => {
+                const toggle = document.querySelector(section.toggle);
+                const content = document.querySelector(section.content);
+                const icon = toggle.querySelector('i');
+
+                toggle.addEventListener('click', function () {
+                    const isHidden = content.classList.contains('hidden');
+
+                    if (isHidden) {
+                        content.classList.remove('hidden');
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        content.classList.add('hidden');
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+    <script id="mobile-menu">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = mobileMenuBtn.querySelector('i');
+            let isMenuOpen = false;
+            mobileMenuBtn.addEventListener('click', function () {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.remove('ri-menu-line');
+                    menuIcon.classList.add('ri-close-line');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('ri-close-line');
+                    menuIcon.classList.add('ri-menu-line');
+                }
+            });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 768) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('ri-close-line');
+                    menuIcon.classList.add('ri-menu-line');
+                    isMenuOpen = false;
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
