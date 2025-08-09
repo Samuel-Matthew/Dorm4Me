@@ -1,0 +1,23 @@
+{
+  "name": "dorm4me",
+  "version": "1.0.0",
+  "description": "students' accomodation finder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samuel-Matthew/Dorm4Me.git"
+  },
+  "author": "Samuel Matthew",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Samuel-Matthew/Dorm4Me/issues"
+  },
+  "homepage": "https://github.com/Samuel-Matthew/Dorm4Me#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

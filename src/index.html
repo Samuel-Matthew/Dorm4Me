@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniLodge Nigeria - Find Your Perfect Student Housing</title>
+    <!-- <script src="https://cdn.tailwindcss.com/3.4.16"></script> -->
+     <link rel="stylesheet" href="output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+    <!-- <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+    </style> -->
+</head>
+
+<body class="bg-white relative" style="overflow:visible;">
+    <header class="w-full bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-['Pacifico'] text-primary">UniLodge</h1>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="search.html" data-readdy="true"
+                        class="text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="favorites.html" data-readdy="true"
+                        class="text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex items-center space-x-3">
+                        <button class="text-gray-700 hover:text-primary font-medium">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </nav>
+                <button id="mobileMenuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+                    <div class="w-6 h-6 flex items-center justify-center">
+                        <i class="ri-menu-line text-2xl"></i>
+                    </div>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="search.html" data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="favorites.html" data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex flex-col space-y-2 px-3 py-2">
+                        <button class="text-gray-700 hover:text-primary font-medium text-left">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="relative min-h-[600px] bg-cover bg-center bg-no-repeat"
+        style="background-image: url('https://readdy.ai/api/search-image?query=Modern%20university%20campus%20with%20students%20walking%20between%20dormitory%20buildings%20and%20academic%20halls%2C%20bright%20sunny%20day%20with%20blue%20sky%2C%20clean%20contemporary%20architecture%2C%20green%20spaces%20and%20pathways%2C%20welcoming%20atmosphere%20for%20new%20students%2C%20soft%20natural%20lighting%20creating%20warm%20shadows%2C%20professional%20photography%20style%20with%20depth%20of%20field&width=1920&height=600&seq=hero001&orientation=landscape')">
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent"></div>
+
+        <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl font-bold text-gray-900 mb-6 leading-tight">Find Your Perfect Student Housing</h1>
+                <p class="text-xl text-gray-600 mb-8">Find quality student accommodation near top Nigerian universities.
+                    Browse verified properties and connect with trusted landlords for your ideal campus living
+                    experience.</p>
+                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="flex flex-col lg:flex-row gap-4">
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                            <div class="relative">
+                                <div
+                                    class="w-6 h-6 flex items-center justify-center absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                    <i class="ri-map-pin-line text-lg"></i>
+                                </div>
+                                <select
+                                    class="w-full pl-12 pr-8 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm appearance-none bg-white">
+                                    <option value="">Select State</option>
+                                    <option value="lagos">Lagos State</option>
+                                    <option value="oyo">Oyo State</option>
+                                    <option value="rivers">Rivers State</option>
+                                    <option value="enugu">Enugu State</option>
+                                    <option value="kaduna">Kaduna State</option>
+                                    <option value="abuja">FCT Abuja</option>
+                                    <option value="akwa-ibom">Akwa-Ibom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Move-in Date</label>
+                            <div class="relative">
+                                <div
+                                    class="w-6 h-6 flex items-center justify-center absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                    <i class="ri-calendar-line text-lg"></i>
+                                </div>
+                                <input type="date"
+                                    class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                            </div>
+                        </div>
+                        <div class="flex items-end">
+                            <button
+                                class="bg-primary text-white px-8 py-3 rounded hover:bg-blue-600 font-medium whitespace-nowrap flex items-center gap-2">
+                                <div class="w-5 h-5 flex items-center justify-center">
+                                    <i class="ri-search-line"></i>
+                                </div>
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <aside class="lg:w-80 bg-white rounded-xl shadow-xs border border-gray-100 p-6 h-fit">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900">Filters</h3>
+                        <button class="text-sm text-primary hover:text-blue-600">Clear All</button>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Price Range</label>
+                            <div class="relative">
+                                <input type="range" min="200" max="2000" value="800"
+                                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider">
+                                <div class="flex justify-between text-sm text-gray-500 mt-2">
+                                    <span>$200</span>
+                                    <span class="font-medium text-primary">$800/month</span>
+                                    <span>$2000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Distance from Campus</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="distance" value="0.5" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-gray-300 rounded-full flex items-center justify-center mr-3 cursor-pointer radio-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-full hidden"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Within 0.5 miles</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="distance" value="1" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-gray-300 rounded-full flex items-center justify-center mr-3 cursor-pointer radio-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-full hidden"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Within 1 mile</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="distance" value="2" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-primary rounded-full flex items-center justify-center mr-3 cursor-pointer radio-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Within 2 miles</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Room Type</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Single Room</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="sr-only">
+                                    <div class="form-check-label custom-checkbox me-3">
+                                        <div class="checkbox-inner bg-primary"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Shared Room</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Studio Apartment</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Amenities</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-primary rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-sm"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">WiFi Included</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Laundry Facilities</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-primary rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-sm"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Parking Available</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="sr-only">
+                                    <div
+                                        class="w-4 h-4 border-2 border-gray-300 rounded flex items-center justify-center mr-3 cursor-pointer checkbox-custom">
+                                        <div class="w-2 h-2 bg-primary rounded-sm hidden"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Gym Access</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="w-full bg-primary text-white py-3 rounded hover:bg-blue-600 font-medium mt-6 whitespace-nowrap">Apply
+                        Filters</button>
+                </aside>
+                <main class="flex-1">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <h2 class="text-xl font-semibold text-gray-900">Available Properties</h2>
+                            <span class="text-sm text-gray-500">248 results found</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button
+                                class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:border-primary text-sm font-medium">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-map-line"></i>
+                                </div>
+                                Map View
+                            </button>
+                            <button
+                                class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600 text-sm font-medium whitespace-nowrap">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-list-unordered"></i>
+                                </div>
+                                List View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <div
+                            class="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="relative">
+                                <img src="https://readdy.ai/api/search-image?query=Modern%20student%20dormitory%20room%20with%20single%20bed%2C%20study%20desk%2C%20wardrobe%2C%20and%20window%20with%20natural%20light%2C%20clean%20and%20organized%20space%2C%20contemporary%20furniture%2C%20bright%20and%20welcoming%20atmosphere%20for%20college%20students&width=400&height=250&seq=room001&orientation=landscape"
+                                    alt="Property" class="w-full h-48 object-cover object-top">
+                                <button
+                                    class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-heart-line text-gray-600"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                                    $650/month</div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-gray-900 mb-2">Riverside Student Apartments</h3>
+                                <p class="text-sm text-gray-600 mb-3">0.3 miles from Stanford University</p>
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="text-sm text-gray-700">Single Room</span>
+                                    <span class="text-sm text-secondary font-medium">Available Now</span>
+                                </div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-wifi-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-car-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-washing-machine-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="flex-1 bg-primary text-white py-2 rounded hover:bg-blue-600 text-sm font-medium whitespace-nowrap">View
+                                        Details</button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded hover:border-primary text-sm">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-message-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="relative">
+                                <img src="https://readdy.ai/api/search-image?query=Shared%20student%20apartment%20living%20room%20with%20two%20study%20areas%2C%20comfortable%20seating%2C%20modern%20kitchen%20in%20background%2C%20bright%20natural%20lighting%2C%20contemporary%20furniture%20design%20for%20university%20students&width=400&height=250&seq=room002&orientation=landscape"
+                                    alt="Property" class="w-full h-48 object-cover object-top">
+                                <button
+                                    class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-heart-fill text-red-500"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                                    $480/month</div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-gray-900 mb-2">Campus View Shared Housing</h3>
+                                <p class="text-sm text-gray-600 mb-3">0.7 miles from UC Berkeley</p>
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="text-sm text-gray-700">Shared Room</span>
+                                    <span class="text-sm text-secondary font-medium">2 spots left</span>
+                                </div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-wifi-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-washing-machine-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-restaurant-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="flex-1 bg-primary text-white py-2 rounded hover:bg-blue-600 text-sm font-medium whitespace-nowrap">View
+                                        Details</button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded hover:border-primary text-sm">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-message-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="relative">
+                                <img src="https://readdy.ai/api/search-image?query=Modern%20studio%20apartment%20for%20students%20with%20kitchenette%2C%20single%20bed%2C%20study%20desk%2C%20and%20bathroom%2C%20efficient%20space%20design%2C%20contemporary%20furniture%2C%20bright%20natural%20lighting%2C%20perfect%20for%20university%20students&width=400&height=250&seq=room003&orientation=landscape"
+                                    alt="Property" class="w-full h-48 object-cover object-top">
+                                <button
+                                    class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-heart-line text-gray-600"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                                    $850/month</div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-gray-900 mb-2">Downtown Studio Loft</h3>
+                                <p class="text-sm text-gray-600 mb-3">1.2 miles from NYU</p>
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="text-sm text-gray-700">Studio</span>
+                                    <span class="text-sm text-secondary font-medium">Available Feb 1</span>
+                                </div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-wifi-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-car-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-dumbbell-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="flex-1 bg-primary text-white py-2 rounded hover:bg-blue-600 text-sm font-medium whitespace-nowrap">View
+                                        Details</button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded hover:border-primary text-sm">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-message-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="relative">
+                                <img src="https://readdy.ai/api/search-image?query=Student%20housing%20single%20bedroom%20with%20private%20bathroom%2C%20study%20area%20with%20bookshelf%2C%20comfortable%20bed%2C%20modern%20furnishings%2C%20natural%20lighting%20from%20large%20window%2C%20clean%20organized%20space%20for%20college%20students&width=400&height=250&seq=room004&orientation=landscape"
+                                    alt="Property" class="w-full h-48 object-cover object-top">
+                                <button
+                                    class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-heart-line text-gray-600"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                                    $720/month</div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-gray-900 mb-2">University Heights Residence</h3>
+                                <p class="text-sm text-gray-600 mb-3">0.5 miles from Harvard University</p>
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="text-sm text-gray-700">Single Room</span>
+                                    <span class="text-sm text-secondary font-medium">Available Now</span>
+                                </div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-wifi-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-washing-machine-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-shield-check-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="flex-1 bg-primary text-white py-2 rounded hover:bg-blue-600 text-sm font-medium whitespace-nowrap">View
+                                        Details</button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded hover:border-primary text-sm">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-message-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="relative">
+                                <img src="https://readdy.ai/api/search-image?query=Shared%20student%20apartment%20with%20two%20beds%2C%20individual%20study%20desks%2C%20shared%20closet%20space%2C%20modern%20furniture%2C%20bright%20room%20with%20large%20windows%2C%20comfortable%20living%20space%20for%20university%20roommates&width=400&height=250&seq=room005&orientation=landscape"
+                                    alt="Property" class="w-full h-48 object-cover object-top">
+                                <button
+                                    class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-heart-line text-gray-600"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                                    $520/month</div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-gray-900 mb-2">Green Valley Student Co-op</h3>
+                                <p class="text-sm text-gray-600 mb-3">0.8 miles from MIT</p>
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="text-sm text-gray-700">Shared Room</span>
+                                    <span class="text-sm text-secondary font-medium">1 spot left</span>
+                                </div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-wifi-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-bike-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-restaurant-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="flex-1 bg-primary text-white py-2 rounded hover:bg-blue-600 text-sm font-medium whitespace-nowrap">View
+                                        Details</button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded hover:border-primary text-sm">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-message-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                            <div class="relative">
+                                <img src="https://readdy.ai/api/search-image?query=Luxury%20student%20studio%20apartment%20with%20modern%20kitchen%2C%20comfortable%20seating%20area%2C%20study%20desk%2C%20premium%20furnishings%2C%20large%20windows%20with%20city%20view%2C%20upscale%20design%20for%20university%20students&width=400&height=250&seq=room006&orientation=landscape"
+                                    alt="Property" class="w-full h-48 object-cover object-top">
+                                <button
+                                    class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-heart-fill text-red-500"></i>
+                                    </div>
+                                </button>
+                                <div
+                                    class="absolute bottom-3 left-3 bg-primary text-white px-2 py-1 rounded text-sm font-medium">
+                                    $950/month</div>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-gray-900 mb-2">Premium Campus Studios</h3>
+                                <p class="text-sm text-gray-600 mb-3">0.2 miles from Columbia University</p>
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="text-sm text-gray-700">Studio</span>
+                                    <span class="text-sm text-secondary font-medium">Available Mar 1</span>
+                                </div>
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-wifi-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-car-line"></i>
+                                    </div>
+                                    <div class="w-4 h-4 flex items-center justify-center text-gray-500">
+                                        <i class="ri-dumbbell-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button
+                                        class="flex-1 bg-primary text-white py-2 rounded hover:bg-blue-600 text-sm font-medium whitespace-nowrap">View
+                                        Details</button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded hover:border-primary text-sm">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-message-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-center">
+                        <button id="loadMoreBtn"
+                            class="bg-primary text-white px-6 py-3 rounded hover:bg-blue-600 font-medium whitespace-nowrap flex items-center gap-2">
+                            <span>Load More Properties</span>
+                            <div id="loadingSpinner"
+                                class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin hidden">
+                            </div>
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Need Help Finding Your Perfect Home?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Our team is here to assist you every step of the way.
+                    Get personalized recommendations and expert guidance.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-8 h-8 flex items-center justify-center text-primary">
+                            <i class="ri-customer-service-line text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">24/7 Support</h3>
+                    <p class="text-gray-600 mb-4">Get instant help from our dedicated support team whenever you need
+                        assistance.</p>
+                    <button
+                        class="bg-primary text-white px-6 py-2 rounded hover:bg-blue-600 font-medium whitespace-nowrap">Chat
+                        Now</button>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-8 h-8 flex items-center justify-center text-secondary">
+                            <i class="ri-video-line text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Virtual Tours</h3>
+                    <p class="text-gray-600 mb-4">Schedule virtual property tours from anywhere in the world before
+                        making your decision.</p>
+                    <button
+                        class="bg-secondary text-white px-6 py-2 rounded hover:bg-green-600 font-medium whitespace-nowrap">Schedule
+                        Tour</button>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div class="w-8 h-8 flex items-center justify-center text-orange-600">
+                            <i class="ri-shield-check-line text-2xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Verified Properties</h3>
+                    <p class="text-gray-600 mb-4">All listings are verified by our team to ensure quality and
+                        authenticity.</p>
+                    <button
+                        class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700 font-medium whitespace-nowrap">Learn
+                        More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden">
+                <div class="h-96 bg-cover bg-center bg-no-repeat"
+                    style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')">
+                    <div class="h-full flex items-center justify-center">
+                        <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Interactive Map View</h3>
+                            <p class="text-gray-600 mb-4">Explore properties on our interactive map to find the perfect
+                                location near your campus.</p>
+                            <button
+                                class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600 font-medium whitespace-nowrap">Open
+                                Full Map</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">UniLodge</h3>
+                    <p class="text-gray-300 mb-4">Nigeria's trusted platform for student accommodation since 2020.</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-twitter-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Student Resources</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="housingguide.html" class="hover:text-white">Housing Guide</a></li>
+                        <li><a href="movingchecklist.html" class="hover:text-white">Moving Checklist</a></li>
+                        <li><a href="roommates profiles/roommatematching.html" class="hover:text-white">Roommate
+                                Matching</a></li>
+                        <li><a href="safetytips.html" class="hover:text-white">Safety Tips</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="helpcenter.html" class="hover:text-white">Help Center</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="reportissue.html" class="hover:text-white">Report Issue</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4">Get notified about new listings and housing tips.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600 font-medium whitespace-nowrap">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2024 CampusStay. All rights reserved.</p>
+                    <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-message-3-line text-xl"></i>
+            </div>
+        </button>
+    </div>
+   <script src="main.js"></script>
+</body>
+
+</html>
