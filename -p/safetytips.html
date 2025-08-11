@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Tips - UniLodge</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3B82F6', secondary: '#1E40AF' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .safety-card {
+            transition: all 0.3s ease;
+        }
+
+        .safety-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .emergency-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <header class="w-full bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-['Pacifico'] text-primary">UniLodge</h1>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="search.html" data-readdy="true"
+                        class="text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="favorites.html" data-readdy="true"
+                        class="text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex items-center space-x-3">
+                        <button class="text-gray-700 hover:text-primary font-medium">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded-button! hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </nav>
+                <button id="mobileMenuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+                    <div class="w-6 h-6 flex items-center justify-center">
+                        <i class="ri-menu-line text-2xl"></i>
+                    </div>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="search.html" data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="favorites.html" data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex flex-col space-y-2 px-3 py-2">
+                        <button class="text-gray-700 hover:text-primary font-medium text-left">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded-button! hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="bg-red-600 text-white w-16 h-16 rounded-full shadow-lg hover:bg-red-700 transition-all emergency-pulse"
+            id="emergencyBtn">
+            <div class="w-8 h-8 flex items-center justify-center mx-auto">
+                <i class="ri-phone-line text-2xl"></i>
+            </div>
+        </button>
+    </div>
+
+    <div class="bg-linear-to-br from-red-50 to-orange-100 py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="ri-shield-check-line text-4xl text-red-600"></i>
+            </div>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Safety Guidelines</h1>
+            <p class="text-xl text-gray-600 mb-8">Your safety is our top priority. Follow these comprehensive guidelines
+                to ensure a secure and comfortable living experience in your student accommodation.</p>
+        </div>
+    </div>
+
+    <div class="bg-red-600 text-white py-4 mb-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 flex items-center justify-center mr-4">
+                        <i class="ri-alarm-warning-line text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">Emergency Contacts</h3>
+                        <p class="text-red-100">Keep these numbers saved and easily accessible</p>
+                    </div>
+                </div>
+                <div class="flex space-x-6">
+                    <div class="text-center">
+                        <p class="font-bold">Emergency</p>
+                        <p class="text-red-100">112</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold">Campus Security</p>
+                        <p class="text-red-100">+234 800 555 0123</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-bold">UniLodge Support</p>
+                        <p class="text-red-100">+234 800 123 4567</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 py-16">
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Safety Categories</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="safety-card bg-white p-6 rounded-lg shadow-md cursor-pointer" data-category="personal">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-shield-user-line text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">Personal Safety</h3>
+                    <p class="text-gray-600 text-center text-sm">Guidelines for staying safe while moving around campus
+                        and accommodation areas</p>
+                </div>
+                <div class="safety-card bg-white p-6 rounded-lg shadow-md cursor-pointer" data-category="accommodation">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-home-shield-line text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">Accommodation Security</h3>
+                    <p class="text-gray-600 text-center text-sm">Protecting your living space and belongings from theft
+                        and unauthorized access</p>
+                </div>
+                <div class="safety-card bg-white p-6 rounded-lg shadow-md cursor-pointer" data-category="fire">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-fire-line text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">Fire Safety</h3>
+                    <p class="text-gray-600 text-center text-sm">Prevention measures and emergency procedures for
+                        fire-related incidents</p>
+                </div>
+
+                <div class="safety-card bg-white p-6 rounded-lg shadow-md cursor-pointer" data-category="emergency">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-alarm-warning-line text-3xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">Emergency Procedures</h3>
+                    <p class="text-gray-600 text-center text-sm">Step-by-step protocols for handling various emergency
+                        situations</p>
+                </div>
+            </div>
+        </section>
+        <section class="mb-20" id="safety-guidelines">
+            <div class="safety-content" id="personal-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Personal Safety Guidelines</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <img src="https://readdy.ai/api/search-image?query=student%20walking%20safely%20at%20night%20on%20well-lit%20campus%20path%20with%20security%20lighting%20modern%20university%20environment%20safety%20awareness%20protective%20measures&width=400&height=250&seq=safety1&orientation=landscape"
+                            alt="Safe Walking" class="w-full h-48 object-cover object-top rounded-lg mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Walking Safety</h3>
+                        <div class="expandable-content">
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Always walk in well-lit areas, especially after
+                                        dark</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Stay alert and avoid distractions like headphones in
+                                        isolated areas</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Walk confidently and be aware of your
+                                        surroundings</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Use campus security escort services when
+                                        available</span>
+                                </div>
+                            </div>
+                            <button class="mt-4 text-primary font-semibold expand-btn">Show More Tips</button>
+                            <div class="hidden expanded-content mt-4 space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Carry a whistle or personal alarm for emergencies</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Share your location with trusted friends when going
+                                        out</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Avoid shortcuts through isolated or poorly lit
+                                        areas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <img src="https://readdy.ai/api/search-image?query=student%20using%20smartphone%20safety%20app%20emergency%20contact%20digital%20security%20modern%20technology%20personal%20protection%20campus%20safety%20awareness&width=400&height=250&seq=safety2&orientation=landscape"
+                            alt="Digital Safety" class="w-full h-48 object-cover object-top rounded-lg mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Digital Safety</h3>
+                        <div class="expandable-content">
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Keep emergency contacts saved and easily
+                                        accessible</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Install safety apps with location sharing
+                                        features</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Keep your phone charged and carry a portable
+                                        charger</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Be cautious about sharing personal information
+                                        online</span>
+                                </div>
+                            </div>
+                            <button class="mt-4 text-primary font-semibold expand-btn">Show More Tips</button>
+                            <div class="hidden expanded-content mt-4 space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Use strong passwords and enable two-factor
+                                        authentication</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Avoid using public Wi-Fi for sensitive
+                                        transactions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="safety-content hidden" id="accommodation-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Accommodation Security</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <img src="https://readdy.ai/api/search-image?query=secure%20student%20accommodation%20door%20with%20modern%20lock%20system%20keycard%20access%20security%20features%20safe%20living%20environment%20protection%20measures&width=400&height=250&seq=security1&orientation=landscape"
+                            alt="Door Security" class="w-full h-48 object-cover object-top rounded-lg mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Access Control</h3>
+                        <div class="expandable-content">
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Always lock doors and windows when leaving your
+                                        room</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Never share access codes or duplicate keys</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Report lost keys or access cards immediately</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Don't let strangers into the building</span>
+                                </div>
+                            </div>
+                            <button class="mt-4 text-primary font-semibold expand-btn">Show More Tips</button>
+                            <div class="hidden expanded-content mt-4 space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Check security cameras and lighting in common
+                                        areas</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Use door chains or peepholes before opening doors</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <img src="https://readdy.ai/api/search-image?query=student%20securing%20valuable%20items%20in%20safe%20lockbox%20laptop%20documents%20personal%20belongings%20protection%20theft%20prevention%20security%20measures&width=400&height=250&seq=security2&orientation=landscape"
+                            alt="Valuables Security" class="w-full h-48 object-cover object-top rounded-lg mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Protecting Valuables</h3>
+                        <div class="expandable-content">
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Keep valuable items in a secure lockbox or safe</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Don't leave electronics or cash visible</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Take photos of serial numbers for insurance</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Consider getting renters insurance</span>
+                                </div>
+                            </div>
+                            <button class="mt-4 text-primary font-semibold expand-btn">Show More Tips</button>
+                            <div class="hidden expanded-content mt-4 space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Mark your belongings with your name or student ID</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Report suspicious activities to security
+                                        immediately</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="safety-content hidden" id="fire-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Fire Safety Protocols</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <img src="https://readdy.ai/api/search-image?query=fire%20safety%20equipment%20smoke%20detector%20fire%20extinguisher%20emergency%20exit%20sign%20student%20accommodation%20fire%20prevention%20safety%20measures%20protection&width=400&height=250&seq=fire1&orientation=landscape"
+                            alt="Fire Prevention" class="w-full h-48 object-cover object-top rounded-lg mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Prevention Measures</h3>
+                        <div class="expandable-content">
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Test smoke detectors monthly and replace
+                                        batteries</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Keep fire extinguisher accessible and learn how to use
+                                        it</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Don't overload electrical outlets or use damaged
+                                        cords</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Keep cooking areas clean and never leave food
+                                        unattended</span>
+                                </div>
+                            </div>
+                            <button class="mt-4 text-primary font-semibold expand-btn">Show More Tips</button>
+                            <div class="hidden expanded-content mt-4 space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-close-line text-red-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Never use candles or open flames in accommodation</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-close-line text-red-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Don't disable smoke detectors even if they're
+                                        sensitive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <img src="https://readdy.ai/api/search-image?query=fire%20evacuation%20route%20emergency%20exit%20stairs%20student%20accommodation%20building%20safety%20escape%20plan%20emergency%20procedures%20fire%20drill&width=400&height=250&seq=fire2&orientation=landscape"
+                            alt="Fire Evacuation" class="w-full h-48 object-cover object-top rounded-lg mb-4">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-4">Evacuation Procedures</h3>
+                        <div class="expandable-content">
+                            <div class="space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Know all evacuation routes and emergency exits</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Practice evacuation routes regularly</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Stay low to avoid smoke and use stairs, never
+                                        elevators</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-check-line text-green-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Meet at designated assembly points outside</span>
+                                </div>
+                            </div>
+                            <button class="mt-4 text-primary font-semibold expand-btn">Show More Tips</button>
+                            <div class="hidden expanded-content mt-4 space-y-3">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Feel doors before opening - if hot, find another
+                                        exit</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                                        <i class="ri-information-line text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <span class="text-gray-700">Never go back inside for belongings</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="safety-content hidden" id="emergency-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Emergency Procedures</h2>
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-md">
+                        <div class="p-6 border-b border-gray-200 cursor-pointer emergency-toggle" data-target="medical">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="ri-heart-pulse-line text-2xl text-red-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-900">Medical Emergencies</h3>
+                                        <p class="text-gray-600">Steps to take during health-related emergencies</p>
+                                    </div>
+                                </div>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl text-gray-500 emergency-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="medical" class="px-6 pb-6 hidden emergency-content-item">
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        1</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Assess the Situation</h4>
+                                        <p class="text-gray-600">Check if the person is conscious and breathing. Don't
+                                            move them unless they're in immediate danger.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        2</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Call for Help</h4>
+                                        <p class="text-gray-600">Dial 112 for emergency services or campus health
+                                            services at +234 800 555 0456.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        3</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Provide First Aid</h4>
+                                        <p class="text-gray-600">Only if trained. Otherwise, wait for professional help
+                                            and keep the person comfortable.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        4</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Stay with the Person</h4>
+                                        <p class="text-gray-600">Monitor their condition and provide reassurance until
+                                            help arrives.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md">
+                        <div class="p-6 border-b border-gray-200 cursor-pointer emergency-toggle"
+                            data-target="security">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="ri-shield-line text-2xl text-blue-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-900">Security Incidents</h3>
+                                        <p class="text-gray-600">How to respond to theft, break-ins, or suspicious
+                                            activities</p>
+                                    </div>
+                                </div>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl text-gray-500 emergency-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="security" class="px-6 pb-6 hidden emergency-content-item">
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        1</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Ensure Your Safety</h4>
+                                        <p class="text-gray-600">If you witness a crime in progress, don't intervene.
+                                            Get to a safe location immediately.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        2</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Contact Authorities</h4>
+                                        <p class="text-gray-600">Call campus security (+234 800 555 0123) or police
+                                            (112) depending on severity.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        3</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Document Details</h4>
+                                        <p class="text-gray-600">Note time, location, description of suspects, and any
+                                            other relevant information.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        4</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Report to UniLodge</h4>
+                                        <p class="text-gray-600">Inform our support team so we can take additional
+                                            security measures if needed.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md">
+                        <div class="p-6 border-b border-gray-200 cursor-pointer emergency-toggle" data-target="natural">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center">
+                                    <div
+                                        class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                        <i class="ri-thunderstorms-line text-2xl text-yellow-600"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-semibold text-gray-900">Natural Disasters</h3>
+                                        <p class="text-gray-600">Procedures for earthquakes, severe weather, and
+                                            flooding</p>
+                                    </div>
+                                </div>
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-arrow-down-s-line text-xl text-gray-500 emergency-icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="natural" class="px-6 pb-6 hidden emergency-content-item">
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        1</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Stay Informed</h4>
+                                        <p class="text-gray-600">Monitor weather alerts and emergency broadcasts on
+                                            radio or mobile apps.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        2</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Take Shelter</h4>
+                                        <p class="text-gray-600">Move to the safest area of your building - away from
+                                            windows and on lower floors if possible.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        3</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Emergency Kit</h4>
+                                        <p class="text-gray-600">Keep water, non-perishable food, flashlight, and first
+                                            aid supplies readily available.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div
+                                        class="w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold">
+                                        4</div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-1">Wait for All-Clear</h4>
+                                        <p class="text-gray-600">Don't leave shelter until authorities confirm it's safe
+                                            to do so.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Interactive Safety Checklist</h2>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Daily Safety Habits</h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Lock room door when leaving</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Check emergency contact numbers are updated</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Keep phone charged above 20%</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Inform someone of your whereabouts</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Secure valuables before leaving</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Weekly Safety Checks</h3>
+                        <div class="space-y-4">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Test smoke detector functionality</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Check door and window locks</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Review evacuation routes</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Update safety app settings</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-6 h-6 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-sm hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-gray-700">Check emergency supply kit</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 p-4 bg-green-50 rounded-lg border border-green-200">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 flex items-center justify-center mr-3">
+                            <i class="ri-checkbox-circle-line text-2xl text-green-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-green-900 mb-1">Safety Score</h4>
+                            <p class="text-green-800 text-sm">Complete all items to achieve 100% safety compliance</p>
+                            <div class="w-full bg-green-200 rounded-full h-2 mt-2">
+                                <div class="bg-green-600 h-2 rounded-full transition-all duration-300"
+                                    id="safety-progress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Safety Resources & Tools</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-smartphone-line text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Safety Apps</h3>
+                    <p class="text-gray-600 mb-4">Download recommended safety applications for emergency situations</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>Location sharing with trusted contacts</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>One-tap emergency calling</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>Campus safety alerts</span>
+                        </div>
+                    </div>
+                    <button
+                        class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-button! hover:bg-purple-700 transition-colors whitespace-nowrap">Download
+                        Guide</button>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-first-aid-kit-line text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">First Aid Training</h3>
+                    <p class="text-gray-600 mb-4">Learn essential first aid skills through our certified training
+                        programs</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>CPR and AED certification</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>Basic wound care</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>Emergency response protocols</span>
+                        </div>
+                    </div>
+                    <button
+                        class="mt-4 bg-green-600 text-white px-4 py-2 rounded-button! hover:bg-green-700 transition-colors whitespace-nowrap">Register
+                        Now</button>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-map-pin-line text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Campus Safety Map</h3>
+                    <p class="text-gray-600 mb-4">Interactive map showing safe routes, emergency stations, and security
+                        cameras</p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>Emergency call boxes</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>Well-lit pathways</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i class="ri-check-line text-green-600 mr-2"></i>
+                            <span>Security patrol routes</span>
+                        </div>
+                    </div>
+                    <button
+                        class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-button! hover:bg-blue-700 transition-colors whitespace-nowrap">View
+                        Map</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="bg-linear-to-r from-primary to-secondary text-white rounded-lg p-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-customer-service-2-line text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">24/7 Safety Support</h2>
+                    <p class="text-xl mb-8">Our dedicated safety team is always available to assist you</p>
+                    <div class="grid md:grid-cols-3 gap-8 mb-8">
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-phone-line text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Emergency Hotline</h3>
+                            <p class="text-white/90">+234 800 123 4567</p>
+                            <p class="text-sm text-white/80">Available 24/7</p>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-chat-3-line text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Live Safety Chat</h3>
+                            <p class="text-white/90">Instant messaging support</p>
+                            <p class="text-sm text-white/80">Response within 2 minutes</p>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="ri-mail-line text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold mb-2">Safety Reports</h3>
+                            <p class="text-white/90">safety@unilodge.ng</p>
+                            <p class="text-sm text-white/80">Anonymous reporting available</p>
+                        </div>
+                    </div>
+                    <button
+                        class="bg-white text-primary px-8 py-3 rounded-button! font-semibold hover:bg-gray-100 transition-colors whitespace-nowrap">Contact
+                        Safety Team</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+     <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">UniLodge</h3>
+                    <p class="text-gray-300 mb-4">Nigeria's trusted platform for student accommodation since 2020.</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-twitter-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Student Resources</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="housingguide.html" class="hover:text-white">Housing Guide</a></li>
+                        <li><a href="movingchecklist.html" class="hover:text-white">Moving Checklist</a></li>
+                        <li><a href="roommates proflies/roommatematching.html" class="hover:text-white">Roommate Matching</a></li>
+                        <li><a href="safetytips.html" class="hover:text-white">Safety Tips</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="helpcenter.html" class="hover:text-white">Help Center</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="reportissue.html" class="hover:text-white">Report Issue</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4">Get notified about new listings and housing tips.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded-button! hover:bg-blue-600 font-medium whitespace-nowrap">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2024 CampusStay. All rights reserved.</p>
+                    <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-message-3-line text-xl"></i>
+            </div>
+        </button>
+    </div> -->
+
+    <script id="category-switching">
+        document.addEventListener('DOMContentLoaded', function () {
+            const categoryCards = document.querySelectorAll('.safety-card');
+            const contentSections = document.querySelectorAll('.safety-content');
+
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const category = this.getAttribute('data-category');
+
+                    contentSections.forEach(section => {
+                        section.classList.add('hidden');
+                    });
+
+                    const targetContent = document.getElementById(category + '-content');
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+
+                    categoryCards.forEach(c => c.classList.remove('ring-2', 'ring-primary'));
+                    this.classList.add('ring-2', 'ring-primary');
+                });
+            });
+            categoryCards[0].click();
+        });
+    </script>
+
+    <script id="expandable-content">
+        document.addEventListener('DOMContentLoaded', function () {
+            const expandBtns = document.querySelectorAll('.expand-btn');
+
+            expandBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const expandedContent = this.nextElementSibling;
+
+                    if (expandedContent.classList.contains('hidden')) {
+                        expandedContent.classList.remove('hidden');
+                        this.textContent = 'Show Less';
+                    } else {
+                        expandedContent.classList.add('hidden');
+                        this.textContent = 'Show More Tips';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="emergency-procedures">
+        document.addEventListener('DOMContentLoaded', function () {
+            const emergencyToggles = document.querySelectorAll('.emergency-toggle');
+            emergencyToggles.forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-target');
+                    const content = document.getElementById(targetId);
+                    const icon = this.querySelector('.emergency-icon');
+
+                    if (content.classList.contains('hidden')) {
+                        content.classList.remove('hidden');
+                        icon.className = 'ri-arrow-up-s-line text-xl text-gray-500 emergency-icon';
+                    } else {
+                        content.classList.add('hidden');
+                        icon.className = 'ri-arrow-down-s-line text-xl text-gray-500 emergency-icon';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="safety-checklist">
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const progressBar = document.getElementById('safety-progress');
+
+            function updateProgress() {
+                const totalChecks = checkboxes.length;
+                const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+                const percentage = (checkedCount / totalChecks) * 100;
+                progressBar.style.width = percentage + '%';
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const checkIcon = this.nextElementSibling.querySelector('i');
+                    if (this.checked) {
+                        checkIcon.classList.remove('hidden');
+                    } else {
+                        checkIcon.classList.add('hidden');
+                    }
+                    updateProgress();
+                });
+            });
+        });
+    </script>
+
+    <script id="emergency-button">
+        document.addEventListener('DOMContentLoaded', function () {
+            const emergencyBtn = document.getElementById('emergencyBtn');
+
+            emergencyBtn.addEventListener('click', function () {
+                const confirmed = confirm('Are you experiencing an emergency?\n\nClick OK to call emergency services (112)\nClick Cancel to contact campus security');
+                if (confirmed) {
+                    window.location.href = 'tel:112';
+                } else {
+                    window.location.href = 'tel:+2348005550123';
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

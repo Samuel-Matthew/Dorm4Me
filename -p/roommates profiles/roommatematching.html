@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Perfect Roommate - UniLodge</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3B82F6', secondary: '#1E40AF' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <header class="w-full bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-['Pacifico'] text-primary">Dorm4Me</h1>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="../search.html"
+                        data-readdy="true" class="text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="../favorites.html"
+                        data-readdy="true" class="text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex items-center space-x-3">
+                        <button class="text-gray-700 hover:text-primary font-medium">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded-button! hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </nav>
+                <button id="mobileMenuBtn"
+                    class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700 hover:text-primary">
+                    <div class="w-6 h-6 flex items-center justify-center">
+                        <i class="ri-menu-line text-2xl"></i>
+                    </div>
+                </button>
+            </div>
+            <div id="mobileMenu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="../index.html" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="../search.html"
+                        data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Search</a>
+                    <a href="../favorites.html"
+                        data-readdy="true"
+                        class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Favorites</a>
+                    <div class="flex flex-col space-y-2 px-3 py-2">
+                        <button class="text-gray-700 hover:text-primary font-medium text-left">Login</button>
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded-button! hover:bg-blue-600 font-medium whitespace-nowrap">Sign
+                            Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex gap-8">
+            <div class="w-80 bg-white rounded-lg shadow-md p-6 h-fit sticky top-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-semibold text-gray-900">Filters</h2>
+                    <button class="text-sm text-primary hover:text-secondary">Clear All</button>
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Budget Range (₦/month)</label>
+                        <div class="flex items-center space-x-3">
+                            <input type="number" placeholder="Min"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                            <span class="text-gray-400">-</span>
+                            <input type="number" placeholder="Max"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Location</label>
+                        <div class="relative">
+                            <input type="text" placeholder="Enter location"
+                                class="w-full px-3 py-2 pr-10 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                            <div
+                                class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+                                <i class="ri-map-pin-line text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Sleep Schedule</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="sleep" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded-full peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center">
+                                    <div class="w-2 h-2 bg-white rounded-full hidden peer-checked:block"></div>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Early Bird (Before 10 PM)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sleep" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded-full peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center">
+                                    <div class="w-2 h-2 bg-white rounded-full hidden peer-checked:block"></div>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Night Owl (After 12 AM)</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="sleep" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded-full peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center">
+                                    <div class="w-2 h-2 bg-white rounded-full hidden peer-checked:block"></div>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Flexible</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Cleanliness Level</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Very Clean</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Moderately Clean</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Relaxed</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Study Habits</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Quiet Study</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Group Study</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Music While Studying</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Interests</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Sports & Fitness</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Music & Arts</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Gaming</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Reading</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Cooking</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Lifestyle Preferences</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Non-Smoking</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Pet-Friendly</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Social</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="hidden peer">
+                                <div
+                                    class="w-4 h-4 border-2 border-gray-300 rounded peer-checked:bg-primary peer-checked:border-primary flex items-center justify-center">
+                                    <i class="ri-check-line text-white text-xs hidden peer-checked:block"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-gray-700">Quiet Environment</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 space-y-3">
+                    <button
+                        class="w-full bg-primary text-white py-3 rounded-button! hover:bg-secondary transition-colors whitespace-nowrap font-medium">Quick
+                        Match</button>
+                    <button
+                        class="w-full border border-primary text-primary py-3 rounded-button! hover:bg-primary hover:text-white transition-colors whitespace-nowrap font-medium">Save
+                        Preferences</button>
+                </div>
+            </div>
+            <div class="flex-1">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h1 class="text-2xl font-bold text-gray-900">Find Your Perfect Roommate</h1>
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm text-gray-600">Sort by:</span>
+                                <div class="relative">
+                                    <button
+                                        class="flex items-center space-x-2 px-3 py-2 border border-gray-300 rounded-md text-sm hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary sort-dropdown">
+                                        <span>Compatibility</span>
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-arrow-down-s-line text-gray-400"></i>
+                                        </div>
+                                    </button>
+                                    <div
+                                        class="absolute right-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10 hidden sort-menu">
+                                        <div class="py-1">
+                                            <button
+                                                class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 sort-option"
+                                                data-value="compatibility">Compatibility</button>
+                                            <button
+                                                class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 sort-option"
+                                                data-value="recent">Recently Active</button>
+                                            <button
+                                                class="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 sort-option"
+                                                data-value="location">Location</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button
+                                    class="p-2 border border-gray-300 rounded-md hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 view-toggle active"
+                                    data-view="grid">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-grid-line text-gray-600"></i>
+                                    </div>
+                                </button>
+                                <button
+                                    class="p-2 border border-gray-300 rounded-md hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 view-toggle"
+                                    data-view="list">
+                                    <div class="w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-list-check text-gray-600"></i>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <p id="roommateCount" class="text-gray-600">Showing <span>24</span> potential roommates based on
+                        your preferences</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 roommate-grid">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20portrait%20smiling%20confident%20natural%20lighting%20modern%20background%20professional%20headshot%20style&width=300&height=200&seq=student1&orientation=landscape"
+                                alt="Profile" class="w-full h-48 object-cover object-top">
+                            <div
+                                class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                92% Match
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-900">Sarah Johnson</h3>
+                                <span class="text-sm text-gray-500">21 years</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">Computer Science • University of Lagos</p>
+                            <p class="text-xs text-gray-500 mb-4">Looking to move in: January 2025</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-forbid-line"></i>
+                                    </div>
+                                    Non-smoking
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-volume-down-line"></i>
+                                    </div>
+                                    Quiet
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-book-line"></i>
+                                    </div>
+                                    Studious
+                                </span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">Looking for a clean, quiet roommate who enjoys
+                                studying together and occasional movie nights. I'm organized and respectful of shared
+                                spaces.</p>
+                            <div class="flex space-x-3">
+                                <button
+                                    class="flex-1 bg-primary text-white py-2 px-4 rounded-button! hover:bg-secondary transition-colors whitespace-nowrap text-sm font-medium"><a href="student1.html">View
+                                    Profile</a></button>
+                                <button
+                                    class="flex-1 border border-primary text-primary py-2 px-4 rounded-button! hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm font-medium">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20male%20university%20student%20portrait%20friendly%20smile%20natural%20lighting%20modern%20background%20professional%20headshot%20style&width=300&height=200&seq=student2&orientation=landscape"
+                                alt="Profile" class="w-full h-48 object-cover object-top">
+                            <div
+                                class="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                87% Match
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-900">Michael Adebayo</h3>
+                                <span class="text-sm text-gray-500">22 years</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">Engineering • University of Ibadan</p>
+                            <p class="text-xs text-gray-500 mb-4">Looking to move in: February 2025</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-heart-line"></i>
+                                    </div>
+                                    Pet-friendly
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-orange-100 text-orange-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-group-line"></i>
+                                    </div>
+                                    Social
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-restaurant-line"></i>
+                                    </div>
+                                    Cooking
+                                </span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">Friendly engineering student who loves cooking and
+                                hosting friends. Looking for someone who enjoys a lively but respectful living
+                                environment.</p>
+                            <div class="flex space-x-3">
+                                <button
+                                    class="flex-1 bg-primary text-white py-2 px-4 rounded-button! hover:bg-secondary transition-colors whitespace-nowrap text-sm font-medium">View
+                                    Profile</button>
+                                <button
+                                    class="flex-1 border border-primary text-primary py-2 px-4 rounded-button! hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm font-medium">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20portrait%20cheerful%20expression%20natural%20lighting%20modern%20background%20professional%20headshot%20style&width=300&height=200&seq=student3&orientation=landscape"
+                                alt="Profile" class="w-full h-48 object-cover object-top">
+                            <div
+                                class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                95% Match
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-900">Fatima Ibrahim</h3>
+                                <span class="text-sm text-gray-500">20 years</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">Medicine • Ahmadu Bello University</p>
+                            <p class="text-xs text-gray-500 mb-4">Looking to move in: January 2025</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-forbid-line"></i>
+                                    </div>
+                                    Non-smoking
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-volume-down-line"></i>
+                                    </div>
+                                    Quiet
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-moon-line"></i>
+                                    </div>
+                                    Early Bird
+                                </span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">Medical student seeking a serious, focused roommate. I
+                                maintain a clean space and prefer quiet study environments. Very organized and reliable.
+                            </p>
+                            <div class="flex space-x-3">
+                                <button
+                                    class="flex-1 bg-primary text-white py-2 px-4 rounded-button! hover:bg-secondary transition-colors whitespace-nowrap text-sm font-medium">View
+                                    Profile</button>
+                                <button
+                                    class="flex-1 border border-primary text-primary py-2 px-4 rounded-button! hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm font-medium">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20male%20university%20student%20portrait%20confident%20smile%20natural%20lighting%20modern%20background%20professional%20headshot%20style&width=300&height=200&seq=student4&orientation=landscape"
+                                alt="Profile" class="w-full h-48 object-cover object-top">
+                            <div
+                                class="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                84% Match
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-900">David Okafor</h3>
+                                <span class="text-sm text-gray-500">23 years</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">Business Admin • University of Nigeria</p>
+                            <p class="text-xs text-gray-500 mb-4">Looking to move in: March 2025</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-orange-100 text-orange-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-group-line"></i>
+                                    </div>
+                                    Social
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-pink-100 text-pink-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-gamepad-line"></i>
+                                    </div>
+                                    Gaming
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-indigo-100 text-indigo-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-moon-fill"></i>
+                                    </div>
+                                    Night Owl
+                                </span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">Business student who enjoys gaming and socializing.
+                                Looking for a roommate who's cool with occasional friends over and late-night study
+                                sessions.</p>
+                            <div class="flex space-x-3">
+                                <button
+                                    class="flex-1 bg-primary text-white py-2 px-4 rounded-button! hover:bg-secondary transition-colors whitespace-nowrap text-sm font-medium">View
+                                    Profile</button>
+                                <button
+                                    class="flex-1 border border-primary text-primary py-2 px-4 rounded-button! hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm font-medium">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20female%20university%20student%20portrait%20warm%20smile%20natural%20lighting%20modern%20background%20professional%20headshot%20style&width=300&height=200&seq=student5&orientation=landscape"
+                                alt="Profile" class="w-full h-48 object-cover object-top">
+                            <div
+                                class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                91% Match
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-900">Grace Emenike</h3>
+                                <span class="text-sm text-gray-500">21 years</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">Psychology • University of Port Harcourt</p>
+                            <p class="text-xs text-gray-500 mb-4">Looking to move in: January 2025</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-heart-line"></i>
+                                    </div>
+                                    Pet-friendly
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-teal-100 text-teal-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-music-line"></i>
+                                    </div>
+                                    Music
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-restaurant-line"></i>
+                                    </div>
+                                    Cooking
+                                </span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">Psychology student who loves music and cooking. I'm
+                                looking for a creative, open-minded roommate who enjoys good conversations and shared
+                                meals.</p>
+                            <div class="flex space-x-3">
+                                <button
+                                    class="flex-1 bg-primary text-white py-2 px-4 rounded-button! hover:bg-secondary transition-colors whitespace-nowrap text-sm font-medium">View
+                                    Profile</button>
+                                <button
+                                    class="flex-1 border border-primary text-primary py-2 px-4 rounded-button! hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm font-medium">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                        <div class="relative">
+                            <img src="https://readdy.ai/api/search-image?query=young%20african%20male%20university%20student%20portrait%20bright%20smile%20natural%20lighting%20modern%20background%20professional%20headshot%20style&width=300&height=200&seq=student6&orientation=landscape"
+                                alt="Profile" class="w-full h-48 object-cover object-top">
+                            <div
+                                class="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                88% Match
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-lg font-semibold text-gray-900">Emmanuel Kalu</h3>
+                                <span class="text-sm text-gray-500">22 years</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">Architecture • Covenant University</p>
+                            <p class="text-xs text-gray-500 mb-4">Looking to move in: February 2025</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-forbid-line"></i>
+                                    </div>
+                                    Non-smoking
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-amber-100 text-amber-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-palette-line"></i>
+                                    </div>
+                                    Creative
+                                </span>
+                                <span
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-emerald-100 text-emerald-800">
+                                    <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                        <i class="ri-run-line"></i>
+                                    </div>
+                                    Fitness
+                                </span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4">Architecture student passionate about design and
+                                fitness. I keep a clean, organized space and enjoy morning workouts. Looking for a
+                                motivated roommate.</p>
+                            <div class="flex space-x-3">
+                                <button
+                                    class="flex-1 bg-primary text-white py-2 px-4 rounded-button! hover:bg-secondary transition-colors whitespace-nowrap text-sm font-medium">View
+                                    Profile</button>
+                                <button
+                                    class="flex-1 border border-primary text-primary py-2 px-4 rounded-button! hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm font-medium">Connect</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-center">
+                    <button id="loadMoreBtn"
+                        class="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-button! hover:border-primary hover:text-primary transition-colors whitespace-nowrap font-medium">Load
+                        More Results</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-['Pacifico'] text-primary mb-4">Dorm4Me</h3>
+                    <p class="text-gray-300 mb-4">Nigeria's trusted platform for student accommodation since 2020.</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-facebook-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-twitter-fill"></i>
+                            </div>
+                        </a>
+                        <a href="#"
+                            class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-instagram-fill"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Student Resources</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="../housingguide.html" class="hover:text-white">Housing Guide</a></li>
+                        <li><a href="../movingchecklist.html" class="hover:text-white">Moving Checklist</a></li>
+                        <li><a href="roommatematching.html" class="hover:text-white">Roommate Matching</a></li>
+                        <li><a href="../safetytips.html" class="hover:text-white">Safety Tips</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="../helpcenter.html" class="hover:text-white">Help Center</a></li>
+                        <li><a href="../contact.html" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="../about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="../reportissue.html" class="hover:text-white">Report Issue</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Stay Updated</h4>
+                    <p class="text-gray-300 mb-4">Get notified about new listings and housing tips.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email"
+                            class="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button
+                            class="bg-primary text-white px-4 py-2 rounded-button! hover:bg-blue-600 font-medium whitespace-nowrap">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm">© 2025 Dorm4Me. All rights reserved.</p>
+                    <div class="flex items-center space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="w-14 h-14 bg-primary text-white rounded-full shadow-lg hover:bg-blue-600 flex items-center justify-center">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-message-3-line text-xl"></i>
+            </div>
+        </button>
+    </div>
+    <script id="filter-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const radioButtons = document.querySelectorAll('input[type="radio"]');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    const indicator = this.nextElementSibling.querySelector('div');
+                    const allRadios = document.querySelectorAll(`input[name="${this.name}"]`);
+                    allRadios.forEach(r => {
+                        const ind = r.nextElementSibling.querySelector('div');
+                        ind.classList.add('hidden');
+                    });
+                    if (this.checked) {
+                        indicator.classList.remove('hidden');
+                    }
+                });
+            });
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    const checkIcon = this.nextElementSibling.querySelector('i');
+                    if (this.checked) {
+                        checkIcon.classList.remove('hidden');
+                    } else {
+                        checkIcon.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+    <script id="sort-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const sortDropdown = document.querySelector('.sort-dropdown');
+            const sortMenu = document.querySelector('.sort-menu');
+            const sortOptions = document.querySelectorAll('.sort-option');
+            sortDropdown.addEventListener('click', function () {
+                sortMenu.classList.toggle('hidden');
+            });
+            sortOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    const value = this.getAttribute('data-value');
+                    const text = this.textContent;
+                    sortDropdown.querySelector('span').textContent = text;
+                    sortMenu.classList.add('hidden');
+                });
+            });
+            document.addEventListener('click', function (e) {
+                if (!sortDropdown.contains(e.target)) {
+                    sortMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    <script id="view-toggle-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            const viewToggles = document.querySelectorAll('.view-toggle');
+            const roommateGrid = document.querySelector('.roommate-grid');
+            viewToggles.forEach(toggle => {
+                toggle.addEventListener('click', function () {
+                    const view = this.getAttribute('data-view');
+                    viewToggles.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    if (view === 'list') {
+                        roommateGrid.classList.remove('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+                        roommateGrid.classList.add('grid-cols-1');
+                    } else {
+                        roommateGrid.classList.remove('grid-cols-1');
+                        roommateGrid.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+                    }
+                });
+            });
+        });
+    </script>
+    <script id="load-more-functionality">
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentPage = 1;
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const roommateGrid = document.querySelector('.roommate-grid');
+            const countDisplay = document.querySelector('#roommateCount span');
+            const itemsPerPage = 6;
+            const totalItems = 48;
+            loadMoreBtn.addEventListener('click', function () {
+                const loading = document.createElement('div');
+                loading.className = 'inline-flex items-center';
+                loading.innerHTML = `
+<div class="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2"></div>
+<span>Loading...</span>
+`;
+                loadMoreBtn.innerHTML = '';
+                loadMoreBtn.appendChild(loading);
+                loadMoreBtn.disabled = true;
+                setTimeout(() => {
+                    currentPage++;
+                    const newItems = generateNewRoommates(itemsPerPage);
+                    roommateGrid.insertAdjacentHTML('beforeend', newItems);
+                    const currentCount = currentPage * itemsPerPage;
+                    countDisplay.textContent = Math.min(currentCount, totalItems);
+                    if (currentCount >= totalItems) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.innerHTML = 'Load More Results';
+                        loadMoreBtn.disabled = false;
+                    }
+                }, 1000);
+            });
+            function generateNewRoommates(count) {
+                const names = ['Chioma Nnamdi', 'Oluwaseun Adeleke', 'Aisha Mohammed', 'Chidi Okonkwo', 'Blessing Ogunleye', 'Taiwo Adeyemi'];
+                const universities = ['Obafemi Awolowo University', 'University of Benin', 'Bayero University', 'Federal University of Technology', 'University of Ilorin', 'Lagos State University'];
+                const courses = ['Law', 'Pharmacy', 'Economics', 'Electrical Engineering', 'Mass Communication', 'Architecture'];
+                const interests = [
+                    ['Music', 'Quiet', 'Early Bird'],
+                    ['Gaming', 'Social', 'Night Owl'],
+                    ['Sports', 'Non-smoking', 'Fitness'],
+                    ['Reading', 'Pet-friendly', 'Cooking'],
+                    ['Art', 'Social', 'Music'],
+                    ['Gaming', 'Quiet', 'Night Owl']
+                ];
+                const prompts = [
+                    'young african female university student portrait smiling confident natural lighting modern background professional headshot style',
+                    'young african male university student portrait friendly smile natural lighting modern background professional headshot style',
+                    'young african female university student portrait cheerful expression natural lighting modern background professional headshot style',
+                    'young african male university student portrait confident smile natural lighting modern background professional headshot style',
+                    'young african female university student portrait warm smile natural lighting modern background professional headshot style',
+                    'young african male university student portrait bright smile natural lighting modern background professional headshot style'
+                ];
+                let html = '';
+                for (let i = 0; i < count; i++) {
+                    const randomIndex = Math.floor(Math.random() * names.length);
+                    const matchPercent = Math.floor(Math.random() * (96 - 84) + 84);
+                    const isHighMatch = matchPercent >= 90;
+                    html += `
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+<div class="relative">
+<img src="https://readdy.ai/api/search-image?query=$%7BencodeURIComponent%28prompts%5BrandomIndex%5D%29%7D&width=300&height=200&seq=student${currentPage}${i}&orientation=landscape" alt="Profile" class="w-full h-48 object-cover object-top">
+<div class="absolute top-4 right-4 ${isHighMatch ? 'bg-green-500' : 'bg-yellow-500'} text-white px-3 py-1 rounded-full text-sm font-semibold">
+${matchPercent}% Match
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-lg font-semibold text-gray-900">${names[randomIndex]}</h3>
+<span class="text-sm text-gray-500">${20 + Math.floor(Math.random() * 4)} years</span>
+</div>
+<p class="text-sm text-gray-600 mb-2">${courses[randomIndex]} • ${universities[randomIndex]}</p>
+<p class="text-xs text-gray-500 mb-4">Looking to move in: ${['January', 'February', 'March'][Math.floor(Math.random() * 3)]} 2025</p>
+<div class="flex flex-wrap gap-2 mb-4">
+${interests[randomIndex].map(interest => `
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs bg-${['green', 'blue', 'purple', 'orange', 'pink'][Math.floor(Math.random() * 5)]}-100 text-${['green', 'blue', 'purple', 'orange', 'pink'][Math.floor(Math.random() * 5)]}-800">
+<div class="w-3 h-3 flex items-center justify-center mr-1">
+<i class="ri-${['heart', 'volume-down', 'book', 'group', 'music'][Math.floor(Math.random() * 5)]}-line"></i>
+</div>
+${interest}
+</span>
+`).join('')}
+</div>
+<p class="text-sm text-gray-600 mb-4">Looking for a ${interests[randomIndex][0].toLowerCase()}-loving roommate who enjoys ${interests[randomIndex][1].toLowerCase()} environments. I'm ${interests[randomIndex][2].toLowerCase()} and always respectful of shared spaces.</p>
+<div class="flex space-x-3">
+<button class="flex-1 bg-primary text-white py-2 px-4 rounded-button! hover:bg-secondary transition-colors whitespace-nowrap text-sm font-medium">View Profile</button>
+<button class="flex-1 border border-primary text-primary py-2 px-4 rounded-button! hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm font-medium">Connect</button>
+</div>
+</div>
+</div>
+`;
+                }
+                return html;
+            }
+        });
+    </script>
+    <script id="mobile-menu">
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = mobileMenuBtn.querySelector('i');
+            let isMenuOpen = false;
+            mobileMenuBtn.addEventListener('click', function () {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.remove('ri-menu-line');
+                    menuIcon.classList.add('ri-close-line');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('ri-close-line');
+                    menuIcon.classList.add('ri-menu-line');
+                }
+            });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 768) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('ri-close-line');
+                    menuIcon.classList.add('ri-menu-line');
+                    isMenuOpen = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
